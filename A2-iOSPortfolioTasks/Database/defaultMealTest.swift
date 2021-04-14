@@ -12,4 +12,9 @@ import CoreData
 
 
 extension CoreDataController {
+//    func  creatDefaultMeals() {
+//        let _ = addMeal(mealName: "hhhh")
+//        let _ = addMeal(name: "hhh", instruction: "jjjj")
+//        cleanup()
+//    }
 }
