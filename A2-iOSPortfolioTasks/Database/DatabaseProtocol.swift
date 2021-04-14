@@ -15,21 +15,21 @@ enum DatabaseChange {
 
 enum ListenerType {
     case meal
-    case ingredientMearsument
+    case ingredient
+    case mearsument
     case all
 }
 
 protocol DatabaseListener: AnyObject {
     var listenerType: ListenerType {get set}
     func onMealChange(change: DatabaseChange, meal: [Meal])
-    func onAllIngredientMeasurementChange(change: DatabaseChange, ingredientMearsurement: [IngrendientMeasurement])
-    func onIngredientListChange(ingredientList: [Ingredient])
+    func onMeasurementChange(change: DatabaseChange, ingredientMearsurement: [Measurement])
+    func onIngredientListChange(change:DatabaseChange, ingredientList: [Ingredient])
 }
 
 protocol DatabaseProtocol: AnyObject {
-    func cleanup()
     
-    var defaultMeal: Meal {get}
+//    var defaultMeal: Meal {get}
 
     func addListener(listener: DatabaseListener)
     func removeListener(listener: DatabaseListener)
@@ -37,12 +37,15 @@ protocol DatabaseProtocol: AnyObject {
     func addMeal(name: String, instruction: String) -> Meal
     func deleteMeal(meal: Meal)
     
-    func addIngredientMeasurement(name: String, quantity: String) -> IngrendientMeasurement
-    func deleteIngredientMeasurement(ingredientMeasurement: IngrendientMeasurement)
+    func addMeasurement(name: String, quantity: String) -> Measurement
+    func deleteMeasurement(measurement: Measurement)
     
     func addIngredient(name: String, ingredientDescription: String) -> Ingredient
+    func deleteIngredient(ingredient: Ingredient)
+
     
-    func addIngredientMeasurementToMeal(ingredientMeasurement: IngrendientMeasurement, meal: Meal) -> Bool
-    func removeIngredientMeasurementFromMeal(ingredientMeasurement: IngrendientMeasurement, meal: Meal)
+    func addMeasurementToMeal(measurement: Measurement, meal: Meal) -> Bool
+    func MeasurementFromMeal(measurement: Measurement, meal: Meal)
     
+    func cleanup()
 }

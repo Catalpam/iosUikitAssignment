@@ -18,6 +18,9 @@ class SearchMealTableViewController: UITableViewController, UISearchBarDelegate 
     
     let MEAL_REQUEST_STRING = "www.themealdb.com/api/json/v1/1/search.php?f=a"
     
+    var mealJson: MealJson? = nil
+    
+    
     var allMeals: [Meal] = []
     var filterMeals: [Meal] = []
     
@@ -30,9 +33,7 @@ class SearchMealTableViewController: UITableViewController, UISearchBarDelegate 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        createDefaultMeal()
-        
+                
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -41,30 +42,16 @@ class SearchMealTableViewController: UITableViewController, UISearchBarDelegate 
         
         navigationItem.hidesSearchBarWhenScrolling = false
         
-        //loding
+        //加载视图
         indicator.style = UIActivityIndicatorView.Style.large
         indicator.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(indicator)
         
         NSLayoutConstraint.activate([
-                                        indicator.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-                                        indicator.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
+            indicator.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            indicator.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
         ])
     }
-    
-//    func createDefaultMeal() {
-//        let ingMeas1 = IngredientMeasurement(name: "vanila", quantity: "1 tsp")
-//        let ingMeas2 = IngredientMeasurement(name: "bd", quantity: "7 tsp")
-//        let ingMeas3 = IngredientMeasurement(name: "kjkg", quantity: "1/2 tsp")
-//
-//        let ings1 = [ingMeas1,ingMeas2,ingMeas3]
-//        let ings2 = [ingMeas2,ingMeas1,ingMeas3]
-//        let ings3 = [ingMeas3,ingMeas2,ingMeas1]
-//
-//        allMeals.append(Meal(name: "abc", instructions: "fjowerhgfjhuiwhouhvwbjguiw gowij gfwrtoipjg gtrwoijgihp0394 t58902ujogv 34t209ujgvw 435t980pgw t49028- g3408-23 425n3opugv8fern ergiopu8  n543 w-[0v/s;er fjh0-w4", ingredients: ings1))
-//        allMeals.append(Meal(name: "def", instructions: "9028- g3408-23 425n3opugv8fern ergiopu8  n543 w-[0v/s;er fjh0-w4", ingredients: ings2))
-//        allMeals.append(Meal(name: "cdg", instructions: "jogv 34t209ujgvw 435t980pgw t49028- g3408-23 425n3opugv8fern ergiopu8  n543 w-[0v/s;er fjh0-w4", ingredients: ings3))
-//    }
     
     // MARK: - Add Meal Delegate
     func addMeal(_ newMeal: Meal) -> Bool {
@@ -90,10 +77,9 @@ class SearchMealTableViewController: UITableViewController, UISearchBarDelegate 
         
         indicator.startAnimating()
         
-        URLSession.shared.invalidateAndCancel()
-//        currentRequestIndex = 0
-//        
-//        requestBookNamed(searchText)
+        HttpRequest.search(keyword: searchText) {content, _ in
+            self.mealJson = content
+        }
     }
 
     // MARK: - Table view data source
@@ -139,7 +125,7 @@ class SearchMealTableViewController: UITableViewController, UISearchBarDelegate 
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        let ingrendientMeasurement = [indexPath.row]
-//        let heroAdded = databaseController?.addIngredientMeasurementToMeal(ingredientMeasurement: ingrendientMeasurement, meal: databaseController!) ?? false
+//        let heroAdded = databaseController?.addMeasurementToMeal(measurement: measurement, meal: databaseController!) ?? false
 //        if heroAdded {
             navigationController?.popViewController(animated: false)
             return
@@ -168,30 +154,4 @@ class SearchMealTableViewController: UITableViewController, UISearchBarDelegate 
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

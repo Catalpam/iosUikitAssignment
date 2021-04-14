@@ -55,28 +55,24 @@ struct MealJson: Codable {
 
 struct HttpRequest<T: Codable> {
     static func search (
-        _ keyword: String,
+        keyword: String,
         completion: @escaping(
-            _ dataProcessed: T,
+            _ dataProcessed: T?,
             _ errorType: String?
         ) -> ()
     ) {
-        /// 请求url前缀，后跟request的类型
-        let urlStr = "www.themealdb.com/api/json/v1/1/search.php?s="
-        /// 由前缀和后缀共同组成的url
-        let url = URL(string: urlStr + keyword)!
-        /// 初始化请求
+        let urlStr = "www.themealdb.com/api/json/v1/1/search.php?s=aaaaaaa"
+        let url = URL(string: String(urlStr))!
         var request = URLRequest(url: url)
-        /// HTTP GET方法
         request.httpMethod = "GET"
         URLSession.shared.dataTask(
             with: request
         ) { data, response, error in
-            /// 判断有没有错误（这里无论如何都不会抛因为是自己手动返回错误信息的）
-            if let error = error {
-                print("DataTask error in UserApi.getMyMessages: " + error.localizedDescription + "\n")
-                exit(-1)
-            } else if let data = data, let response = response as? HTTPURLResponse, response.statusCode == 200 {
+//            if let error = error {
+//                print("DataTask error in UserApi.getMyMessages: " + error.localizedDescription + "\n")
+//                exit(-1)
+//            } else
+            if let data = data, let response = response as? HTTPURLResponse, response.statusCode == 200 {
                 DispatchQueue.main.async {
                     let dataProcessed = try! JSONDecoder().decode(T.self, from: data)
                     completion(dataProcessed, nil)
@@ -85,6 +81,25 @@ struct HttpRequest<T: Codable> {
         }.resume()
     }
 }
+
+func nullToNil(value : AnyObject?) -> AnyObject? {
+    if value is NSNull {
+        return nil
+    } else {
+        return value
+    }
+}
+
+class Tools{
+    static func setOptionalStr(value : Any?) -> String?{
+        guard let string = value as! String?, !string.isEmpty else {
+            return nil
+        }
+        return  value as? String
+    }
+}
+
+
 
 
 //private enum RootKeys: String, CodingKey {

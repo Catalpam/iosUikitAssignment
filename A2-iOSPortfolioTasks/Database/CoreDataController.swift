@@ -11,6 +11,12 @@ import CoreData
 class CoreDataController: NSObject, DatabaseProtocol {
     
     let DEFAULT_MEAL_NAME = "Default Meal"
+    var listeners = MulticastDelegate<DatabaseListener>()
+    var persistentContainer: NSPersistentContainer
+    
+    var mealFetchedResultsController: NSFetchedResultsController<Meal>?
+    var ingredientFetchedResultsController: NSFetchedResultsController<Ingredient>?
+    var measurementFetchedResultsController: NSFetchedResultsController<Measurement>?
 
     lazy var defaultMeal: Meal = {
         var meals = [Meal]()
@@ -29,21 +35,6 @@ class CoreDataController: NSObject, DatabaseProtocol {
         return addMeal(mealName: DEFAULT_MEAL_NAME)
     }()
     
-    func addMeal(mealName: String) -> Meal {
-        let meal = NSEntityDescription.insertNewObject(forEntityName: "Meal", into: persistentContainer.viewContext) as! Meal
-        meal.name = mealName
-        
-        return meal
-    }
-
-    
-    var mealFetchedResultsController: NSFetchedResultsController<Meal>?
-    var allIngredientFetchedResultsController: NSFetchedResultsController<Ingredient>?
-    var allIngrendientMeasurementFetchedResultsController: NSFetchedResultsController<IngrendientMeasurement>?
-
-    
-    var listeners = MulticastDelegate<DatabaseListener>()
-    var persistentContainer: NSPersistentContainer
     
     override init() {
         persistentContainer = NSPersistentContainer(name: "MealModel")
@@ -52,7 +43,6 @@ class CoreDataController: NSObject, DatabaseProtocol {
                 fatalError("Failed to load Core Data Stack with error: \(error)")
             }
         }
-        
         super.init()
     }
     
@@ -79,69 +69,32 @@ class CoreDataController: NSObject, DatabaseProtocol {
         listeners.removeDelegate(listener)
     }
 
-    func addMeal(name: String, instruction: String) -> Meal {
-        let meal = NSEntityDescription.insertNewObject(forEntityName: "Meal", into: persistentContainer.viewContext) as! Meal
-        meal.name = name
-        meal.instructions = instruction
-        
-        return meal
-    }
     
-    func deleteMeal(meal: Meal) {
-        persistentContainer.viewContext.delete(meal)
-    }
-    
-    func fetchAllMeals() -> [Meal] {
-        var meals = [Meal]()
-        
-        let request: NSFetchRequest<Meal> = Meal.fetchRequest()
-        
-        do {
-            try meals = persistentContainer.viewContext.fetch(request)
-        } catch {
-            print("Fetch request failed with error: \(error)")
+    // MARK: - Fetched Results Controller Protocol methods
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        if controller == mealFetchedResultsController {
+            listeners.invoke() { (listener) in
+                if listener.listenerType == .meal || listener.listenerType == .all {
+                    listener.onMealChange(change: .update, meal: fetchAllMeals())
+                }
+            }
         }
-        
-        return meals
-    }
-    
-    func addIngredientMeasurement(name: String, quantity: String) -> IngrendientMeasurement {
-        let ingrendientMeasurement = NSEntityDescription.insertNewObject(forEntityName: "IngrendientMeasurement", into: persistentContainer.viewContext) as! IngrendientMeasurement
-        ingrendientMeasurement.name = name
-        ingrendientMeasurement.quantity = quantity
-        
-        return ingrendientMeasurement
-    }
-    
-    func deleteIngredientMeasurement(ingredientMeasurement: IngrendientMeasurement) {
-        persistentContainer.viewContext.delete(ingredientMeasurement)
-    }
-    
-    func addIngredientMeasurementToMeal(ingredientMeasurement: IngrendientMeasurement, meal: Meal) -> Bool {
-        guard let ingredientMeasurements = meal.ingredients, ingredientMeasurements.contains(ingredientMeasurement) == false  else {
-            return false
+        else if controller == ingredientFetchedResultsController {
+            listeners.invoke() { (listener) in
+                if listener.listenerType == .ingredient || listener.listenerType == .all {
+                    listener.onIngredientListChange(change: .update, ingredientList: fetchAllIngredient())
+                }
+            }
+
         }
-        
-        meal.addToIngredients(ingredientMeasurement)
-        return true
+        else if controller == measurementFetchedResultsController {
+            listeners.invoke() { (listener) in
+                if listener.listenerType == .mearsument || listener.listenerType == .all {
+//                    listener.onMeasurementChange(change: .update, ingredientMearsurement: fetch())
+                }
+            }
+        }
     }
-
-    func removeIngredientMeasurementFromMeal(ingredientMeasurement: IngrendientMeasurement, meal: Meal) {
-    }
-    
-    func addIngredient(name: String, ingredientDescription: String) -> Ingredient {
-        let ingrendient = NSEntityDescription.insertNewObject(forEntityName: "Ingredient", into: persistentContainer.viewContext) as! Ingredient
-        ingrendient.name = name
-        ingrendient.ingredientDescription = ingredientDescription
-        return ingrendient
-    }
-    
-    
-    func  createDefaultHeroes() {
-        let _ = addMeal(mealName: "hhhh")
-        let _ = addMeal(name: "hhh", instruction: "jjjj")
-        cleanup()
-
-    }
-
 }
+
+

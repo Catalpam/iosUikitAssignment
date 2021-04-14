@@ -22,11 +22,11 @@ class MyMealTableViewController: UITableViewController, DatabaseListener {
         myMeals = meal
     }
     
-    func onAllIngredientMeasurementChange(change: DatabaseChange, ingredientMearsurement: [IngrendientMeasurement]) {
+    func onMeasurementChange(change: DatabaseChange, ingredientMearsurement: [Measurement]) {
         //Do nothing
     }
     
-    func onIngredientListChange(ingredientList: [Ingredient]) {
+    func onIngredientListChange(change: DatabaseChange, ingredientList: [Ingredient]) {
         //Do nothing
     }
     
@@ -115,9 +115,9 @@ class MyMealTableViewController: UITableViewController, DatabaseListener {
 
 
 //    func testMeal() {
-//        let ingMeas1 = IngredientMeasurement(name: "vanila", quantity: "1 tsp")
-//        let ingMeas2 = IngredientMeasurement(name: "bd", quantity: "7 tsp")
-//        let ingMeas3 = IngredientMeasurement(name: "kjkg", quantity: "1/2 tsp")
+//        let ingMeas1 = Measurement(name: "vanila", quantity: "1 tsp")
+//        let ingMeas2 = Measurement(name: "bd", quantity: "7 tsp")
+//        let ingMeas3 = Measurement(name: "kjkg", quantity: "1/2 tsp")
 //
 //        let ings1 = [ingMeas1,ingMeas2,ingMeas3]
 //        let ings2 = [ingMeas2,ingMeas1,ingMeas3]

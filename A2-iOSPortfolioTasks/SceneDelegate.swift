@@ -41,12 +41,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to undo the changes made on entering the background.
     }
 
+    // Called as the scene transitions from the foreground to the background.
+    // Use this method to save data, release shared resources, and store enough scene-specific state information
+    // to restore the scene back to its current state.
     func sceneDidEnterBackground(_ scene: UIScene) {
-        // Called as the scene transitions from the foreground to the background.
-        // Use this method to save data, release shared resources, and store enough scene-specific state information
-        // to restore the scene back to its current state.
+        (UIApplication.shared.delegate as? AppDelegate)?.databaseController?.cleanup()
     }
-
 
 }
 

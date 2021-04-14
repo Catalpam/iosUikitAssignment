@@ -9,13 +9,17 @@
 /* Begin PBXBuildFile section */
 		8009DE5A2625DB39006B6E98 /* AddMealDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8009DE592625DB39006B6E98 /* AddMealDelegate.swift */; };
 		805D3EBE2626667A000F745D /* MealData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D3EBD2626667A000F745D /* MealData.swift */; };
+		805D3EC52626D599000F745D /* MealDbController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D3EC42626D599000F745D /* MealDbController.swift */; };
+		805D3EC82626D7A2000F745D /* MeasurementDbController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D3EC72626D7A2000F745D /* MeasurementDbController.swift */; };
+		805D3ECB2626DA94000F745D /* defaultMealTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D3ECA2626DA94000F745D /* defaultMealTest.swift */; };
+		805D3ED22626E107000F745D /* IngredientDbContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D3ED12626E107000F745D /* IngredientDbContoller.swift */; };
 		C0506A1926202C4B007FB71B /* MealModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0506A1726202C4B007FB71B /* MealModel.xcdatamodeld */; };
 		C0506A2126202FAB007FB71B /* Meal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0506A1B26202FAB007FB71B /* Meal+CoreDataClass.swift */; };
 		C0506A2226202FAB007FB71B /* Meal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0506A1C26202FAB007FB71B /* Meal+CoreDataProperties.swift */; };
 		C0506A2326202FAB007FB71B /* Ingredient+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0506A1D26202FAB007FB71B /* Ingredient+CoreDataClass.swift */; };
 		C0506A2426202FAB007FB71B /* Ingredient+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0506A1E26202FAB007FB71B /* Ingredient+CoreDataProperties.swift */; };
-		C0506A2526202FAB007FB71B /* IngrendientMeasurement+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0506A1F26202FAB007FB71B /* IngrendientMeasurement+CoreDataClass.swift */; };
-		C0506A2626202FAB007FB71B /* IngrendientMeasurement+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0506A2026202FAB007FB71B /* IngrendientMeasurement+CoreDataProperties.swift */; };
+		C0506A2526202FAB007FB71B /* Measurement+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0506A1F26202FAB007FB71B /* Measurement+CoreDataClass.swift */; };
+		C0506A2626202FAB007FB71B /* Measurement+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0506A2026202FAB007FB71B /* Measurement+CoreDataProperties.swift */; };
 		C0506A2A26203059007FB71B /* MulticastDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0506A2926203059007FB71B /* MulticastDelegate.swift */; };
 		C0506A2D262030CA007FB71B /* DatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0506A2C262030CA007FB71B /* DatabaseProtocol.swift */; };
 		C0506A30262040B3007FB71B /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0506A2F262040B3007FB71B /* CoreDataController.swift */; };
@@ -39,13 +43,17 @@
 /* Begin PBXFileReference section */
 		8009DE592625DB39006B6E98 /* AddMealDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMealDelegate.swift; sourceTree = "<group>"; };
 		805D3EBD2626667A000F745D /* MealData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealData.swift; sourceTree = "<group>"; };
+		805D3EC42626D599000F745D /* MealDbController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDbController.swift; sourceTree = "<group>"; };
+		805D3EC72626D7A2000F745D /* MeasurementDbController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementDbController.swift; sourceTree = "<group>"; };
+		805D3ECA2626DA94000F745D /* defaultMealTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = defaultMealTest.swift; sourceTree = "<group>"; };
+		805D3ED12626E107000F745D /* IngredientDbContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientDbContoller.swift; sourceTree = "<group>"; };
 		C0506A1826202C4B007FB71B /* MealModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MealModel.xcdatamodel; sourceTree = "<group>"; };
 		C0506A1B26202FAB007FB71B /* Meal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Meal+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		C0506A1C26202FAB007FB71B /* Meal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Meal+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		C0506A1D26202FAB007FB71B /* Ingredient+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ingredient+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		C0506A1E26202FAB007FB71B /* Ingredient+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ingredient+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		C0506A1F26202FAB007FB71B /* IngrendientMeasurement+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IngrendientMeasurement+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		C0506A2026202FAB007FB71B /* IngrendientMeasurement+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IngrendientMeasurement+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		C0506A1F26202FAB007FB71B /* Measurement+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Measurement+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		C0506A2026202FAB007FB71B /* Measurement+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Measurement+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		C0506A2926203059007FB71B /* MulticastDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulticastDelegate.swift; sourceTree = "<group>"; };
 		C0506A2C262030CA007FB71B /* DatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseProtocol.swift; sourceTree = "<group>"; };
 		C0506A2F262040B3007FB71B /* CoreDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
@@ -93,8 +101,8 @@
 				C0506A1C26202FAB007FB71B /* Meal+CoreDataProperties.swift */,
 				C0506A1D26202FAB007FB71B /* Ingredient+CoreDataClass.swift */,
 				C0506A1E26202FAB007FB71B /* Ingredient+CoreDataProperties.swift */,
-				C0506A1F26202FAB007FB71B /* IngrendientMeasurement+CoreDataClass.swift */,
-				C0506A2026202FAB007FB71B /* IngrendientMeasurement+CoreDataProperties.swift */,
+				C0506A1F26202FAB007FB71B /* Measurement+CoreDataClass.swift */,
+				C0506A2026202FAB007FB71B /* Measurement+CoreDataProperties.swift */,
 				C0506A1726202C4B007FB71B /* MealModel.xcdatamodeld */,
 			);
 			path = DataModel;
@@ -106,6 +114,10 @@
 				C0506A2926203059007FB71B /* MulticastDelegate.swift */,
 				C0506A2C262030CA007FB71B /* DatabaseProtocol.swift */,
 				C0506A2F262040B3007FB71B /* CoreDataController.swift */,
+				805D3ECA2626DA94000F745D /* defaultMealTest.swift */,
+				805D3EC42626D599000F745D /* MealDbController.swift */,
+				805D3EC72626D7A2000F745D /* MeasurementDbController.swift */,
+				805D3ED12626E107000F745D /* IngredientDbContoller.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -227,7 +239,7 @@
 				805D3EBE2626667A000F745D /* MealData.swift in Sources */,
 				C0506A30262040B3007FB71B /* CoreDataController.swift in Sources */,
 				C0506A1926202C4B007FB71B /* MealModel.xcdatamodeld in Sources */,
-				C0506A2626202FAB007FB71B /* IngrendientMeasurement+CoreDataProperties.swift in Sources */,
+				C0506A2626202FAB007FB71B /* Measurement+CoreDataProperties.swift in Sources */,
 				C0C2128E261EC691002BDC0F /* MealCountTableViewCell.swift in Sources */,
 				C0C2127C261EBA37002BDC0F /* SearchMealTableViewController.swift in Sources */,
 				C0C21264261EB86A002BDC0F /* AppDelegate.swift in Sources */,
@@ -236,16 +248,20 @@
 				C0506A2A26203059007FB71B /* MulticastDelegate.swift in Sources */,
 				C0C21282261EC00B002BDC0F /* EditNameViewController.swift in Sources */,
 				8009DE5A2625DB39006B6E98 /* AddMealDelegate.swift in Sources */,
+				805D3EC82626D7A2000F745D /* MeasurementDbController.swift in Sources */,
 				C0506A2126202FAB007FB71B /* Meal+CoreDataClass.swift in Sources */,
 				C0C21279261EB977002BDC0F /* MyMealTableViewController.swift in Sources */,
 				C0C2129D261EF107002BDC0F /* DisplayMessage.swift in Sources */,
+				805D3ED22626E107000F745D /* IngredientDbContoller.swift in Sources */,
 				C0C21285261EC178002BDC0F /* EditInstructionViewController.swift in Sources */,
-				C0506A2526202FAB007FB71B /* IngrendientMeasurement+CoreDataClass.swift in Sources */,
+				C0506A2526202FAB007FB71B /* Measurement+CoreDataClass.swift in Sources */,
 				C0506A2326202FAB007FB71B /* Ingredient+CoreDataClass.swift in Sources */,
 				C0C2127F261EBE3E002BDC0F /* CreateMealTableViewController.swift in Sources */,
 				C0C21266261EB86A002BDC0F /* SceneDelegate.swift in Sources */,
 				C0506A2226202FAB007FB71B /* Meal+CoreDataProperties.swift in Sources */,
 				C0C21288261EC370002BDC0F /* IngredientDetailViewController.swift in Sources */,
+				805D3EC52626D599000F745D /* MealDbController.swift in Sources */,
+				805D3ECB2626DA94000F745D /* defaultMealTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

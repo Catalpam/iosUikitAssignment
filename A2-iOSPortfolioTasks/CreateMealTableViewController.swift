@@ -78,7 +78,7 @@ class CreateMealTableViewController: UITableViewController {
         
         let ingredientCell = tableView.dequeueReusableCell(withIdentifier: CELL_INGREDIENT, for: indexPath) as! IngredientsTableViewCell
 //        ingredientCell.ingredientNameLabel?.text = meal?.ingredients
-//        ingredientCell.ingredientMeasurementLabel?.text = meal?.ingredients[indexPath.row].quantity
+//        ingredientCell.measurementLabel?.text = meal?.ingredients[indexPath.row].quantity
         
         return ingredientCell
     }

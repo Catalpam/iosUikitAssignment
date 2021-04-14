@@ -26,10 +26,10 @@ extension Meal {
 extension Meal {
 
     @objc(addIngredientsObject:)
-    @NSManaged public func addToIngredients(_ value: IngrendientMeasurement)
+    @NSManaged public func addToIngredients(_ value: Measurement)
 
     @objc(removeIngredientsObject:)
-    @NSManaged public func removeFromIngredients(_ value: IngrendientMeasurement)
+    @NSManaged public func removeFromIngredients(_ value: Measurement)
 
     @objc(addIngredients:)
     @NSManaged public func addToIngredients(_ values: NSSet)
