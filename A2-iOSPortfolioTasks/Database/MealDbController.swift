@@ -42,11 +42,5 @@ extension CoreDataController {
         return meals
     }
 
-    //    func  creatDefaultMeals() {
-//        let _ = addMeal(mealName: "hhhh")
-//        let _ = addMeal(name: "hhh", instruction: "jjjj")
-//        cleanup()
-//    }
-//
 
 }
