@@ -16,6 +16,8 @@ class SearchMealTableViewController: UITableViewController, UISearchBarDelegate 
     let CELL_SEARCH = "searchMealCell"
     let CELL_ADD = "addSearchMealCell"
     
+    let MEAL_REQUEST_STRING = "www.themealdb.com/api/json/v1/1/search.php?f=a"
+    
     var allMeals: [Meal] = []
     var filterMeals: [Meal] = []
     

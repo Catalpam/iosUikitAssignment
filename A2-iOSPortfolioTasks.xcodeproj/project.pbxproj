@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8009DE5A2625DB39006B6E98 /* AddMealDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8009DE592625DB39006B6E98 /* AddMealDelegate.swift */; };
+		805D3EBE2626667A000F745D /* MealData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D3EBD2626667A000F745D /* MealData.swift */; };
 		C0506A1926202C4B007FB71B /* MealModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0506A1726202C4B007FB71B /* MealModel.xcdatamodeld */; };
 		C0506A2126202FAB007FB71B /* Meal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0506A1B26202FAB007FB71B /* Meal+CoreDataClass.swift */; };
 		C0506A2226202FAB007FB71B /* Meal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0506A1C26202FAB007FB71B /* Meal+CoreDataProperties.swift */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		8009DE592625DB39006B6E98 /* AddMealDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMealDelegate.swift; sourceTree = "<group>"; };
+		805D3EBD2626667A000F745D /* MealData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealData.swift; sourceTree = "<group>"; };
 		C0506A1826202C4B007FB71B /* MealModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MealModel.xcdatamodel; sourceTree = "<group>"; };
 		C0506A1B26202FAB007FB71B /* Meal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Meal+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		C0506A1C26202FAB007FB71B /* Meal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Meal+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
@@ -76,6 +78,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		805D3EBC2626663C000F745D /* WebData */ = {
+			isa = PBXGroup;
+			children = (
+				805D3EBD2626667A000F745D /* MealData.swift */,
+			);
+			path = WebData;
+			sourceTree = "<group>";
+		};
 		C0506A1526202BDC007FB71B /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +139,7 @@
 				C0C21278261EB977002BDC0F /* MyMealTableViewController.swift */,
 				8009DE592625DB39006B6E98 /* AddMealDelegate.swift */,
 				C0C2127B261EBA37002BDC0F /* SearchMealTableViewController.swift */,
+				805D3EBC2626663C000F745D /* WebData */,
 				C0C2127E261EBE3E002BDC0F /* CreateMealTableViewController.swift */,
 				C0C21281261EC00B002BDC0F /* EditNameViewController.swift */,
 				C0C21284261EC178002BDC0F /* EditInstructionViewController.swift */,
@@ -213,6 +224,7 @@
 			files = (
 				C0506A2426202FAB007FB71B /* Ingredient+CoreDataProperties.swift in Sources */,
 				C0506A2D262030CA007FB71B /* DatabaseProtocol.swift in Sources */,
+				805D3EBE2626667A000F745D /* MealData.swift in Sources */,
 				C0506A30262040B3007FB71B /* CoreDataController.swift in Sources */,
 				C0506A1926202C4B007FB71B /* MealModel.xcdatamodeld in Sources */,
 				C0506A2626202FAB007FB71B /* IngrendientMeasurement+CoreDataProperties.swift in Sources */,
