@@ -27,7 +27,7 @@ class MyMealTableViewController: UITableViewController, DatabaseListener {
         //Do nothing
     }
     
-    func onIngredientListChange(change: DatabaseChange, ingredientList: [Ingredient]) {
+    func onIngredientListChange(ingredientList: [Ingredient]) {
         //Do nothing
     }
     

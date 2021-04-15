@@ -11,19 +11,13 @@ import Foundation
 import CoreData
 import UIKit
 extension CoreDataController {
-//    func addIngredient(name: String, ingredientDescription: String) -> Ingredient {
+//    func addIngredient(name: String, strDescription: String) -> Ingredient {
 //        let ingredient = NSEntityDescription.insertNewObject(forEntityName: "Ingredient", into: persistentContainer.viewContext) as! Ingredient
 //        Ingredient.name = name
-//        Ingredient.ingredientDescription = ingredientDescription
+//        Ingredient.strDescription = strDescription
 //        
 //        return ingredient
 //    }
-    func addIngredient(name: String, ingredientDescription: String) -> Ingredient {
-        let ingrendient = NSEntityDescription.insertNewObject(forEntityName: "Ingredient", into: persistentContainer.viewContext) as! Ingredient
-        ingrendient.name = name
-        ingrendient.ingredientDescription = ingredientDescription
-        return ingrendient
-    }
 
     
 
@@ -32,22 +26,36 @@ extension CoreDataController {
     }
     
     func fetchAllIngredient() -> [Ingredient] {
-        var ingredients = [Ingredient]()
-        let request: NSFetchRequest<Ingredient> = Ingredient.fetchRequest()
-        
-        do {
-            try ingredients = persistentContainer.viewContext.fetch(request)
-        } catch {
-            print("Fetch request failed with error: \(error)")
+        if ingredientFetchedResultsController == nil {
+            let fetchRequest: NSFetchRequest<Ingredient> = Ingredient.fetchRequest()
+            let nameSortDescriptor = NSSortDescriptor(key: "strDescription", ascending: true)
+            fetchRequest.sortDescriptors = [nameSortDescriptor]
+
+            ingredientFetchedResultsController = NSFetchedResultsController<Ingredient> (
+                fetchRequest:fetchRequest,
+                managedObjectContext: persistentContainer.viewContext,
+                sectionNameKeyPath: nil,
+                cacheName: nil
+            )
+            ingredientFetchedResultsController?.delegate = self
+            
+            do {
+                try ingredientFetchedResultsController?.performFetch()
+            } catch {
+                print("Fetch request failed with error: \(error)")
+            }
         }
-        
-        return ingredients
+        if let ingredients = ingredientFetchedResultsController?.fetchedObjects {
+            return ingredients
+        }
+        return [Ingredient]()
     }
     
-    func  creatDefaultMeals() {
-        let _ = addMeal(mealName: "hhhh")
-        let _ = addMeal(name: "hhh", instruction: "jjjj")
-        cleanup()
+    func addIngredient(ingreItem: IngreItem) -> Ingredient {
+        let ingredient = NSEntityDescription.insertNewObject(forEntityName:"Ingredient",into: persistentContainer.viewContext) as! Ingredient
+        ingredient.strIngredient = ingreItem.strIngredient
+        ingredient.strDescription = ingreItem.strDescription
+        return ingredient
     }
 }
 

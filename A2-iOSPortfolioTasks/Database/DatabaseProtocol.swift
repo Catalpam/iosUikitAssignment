@@ -24,7 +24,7 @@ protocol DatabaseListener: AnyObject {
     var listenerType: ListenerType {get set}
     func onMealChange(change: DatabaseChange, meal: [Meal])
     func onMeasurementChange(change: DatabaseChange, ingredientMearsurement: [Measurement])
-    func onIngredientListChange(change:DatabaseChange, ingredientList: [Ingredient])
+    func onIngredientListChange(ingredientList: [Ingredient])
 }
 
 protocol DatabaseProtocol: AnyObject {
@@ -40,7 +40,7 @@ protocol DatabaseProtocol: AnyObject {
     func addMeasurement(name: String, quantity: String) -> Measurement
     func deleteMeasurement(measurement: Measurement)
     
-    func addIngredient(name: String, ingredientDescription: String) -> Ingredient
+    func addIngredient(ingreItem: IngreItem) -> Ingredient
     func deleteIngredient(ingredient: Ingredient)
 
     

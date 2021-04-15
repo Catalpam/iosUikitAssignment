@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class CoreDataController: NSObject, DatabaseProtocol {
+class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsControllerDelegate {
     
     let DEFAULT_MEAL_NAME = "Default Meal"
     var listeners = MulticastDelegate<DatabaseListener>()
@@ -63,6 +63,9 @@ class CoreDataController: NSObject, DatabaseProtocol {
         if listener.listenerType == .meal || listener.listenerType == .all {
             listener.onMealChange(change: .update, meal: fetchAllMeals())
         }
+        if listener.listenerType == .ingredient || listener.listenerType == .all {
+            listener.onIngredientListChange(ingredientList: fetchAllIngredient())
+        }
     }
     
     func removeListener(listener: DatabaseListener) {
@@ -82,7 +85,7 @@ class CoreDataController: NSObject, DatabaseProtocol {
         else if controller == ingredientFetchedResultsController {
             listeners.invoke() { (listener) in
                 if listener.listenerType == .ingredient || listener.listenerType == .all {
-                    listener.onIngredientListChange(change: .update, ingredientList: fetchAllIngredient())
+                    listener.onIngredientListChange(ingredientList: fetchAllIngredient())
                 }
             }
 
