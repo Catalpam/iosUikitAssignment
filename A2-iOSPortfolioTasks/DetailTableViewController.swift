@@ -7,7 +7,9 @@
 
 import UIKit
 
-class DetailTableViewController: UITableViewController, StrDelegate {
+class DetailTableViewController: UITableViewController, StrDelegate, DatabaseListener {
+    var listenerType: ListenerType = .all
+    
     let SECTION_NAME = 0
     let SECTION_INSTRUCTION = 1
     let SECTION_INGREDIENT = 2
@@ -19,6 +21,21 @@ class DetailTableViewController: UITableViewController, StrDelegate {
     let CELL_INGREDIENT = "ingredientCell"
     var nameStr: String = ""
     var introStr: String = ""
+    
+    var measurements: [MeasureItem] = []
+    
+    func onMealChange(change: DatabaseChange, meal: [Meal]) {
+        tableView.reloadData()
+    }
+    
+    func onMeasurementChange(change: DatabaseChange, ingredientMearsurement: [Measurement]) {
+        //DoNothing
+    }
+    
+    func onIngredientListChange(ingredientList: [Ingredient]) {
+        tableView.reloadData()
+        //DoNothing
+    }
 
     
     @IBOutlet weak var navigationTitle: UINavigationItem!
@@ -52,7 +69,7 @@ class DetailTableViewController: UITableViewController, StrDelegate {
             case SECTION_ADD:
                 return 1
             case SECTION_INGREDIENT:
-                return meal?.ingredients?.count ?? 1
+                return measurements.count
             default:
                 return 0
         }
@@ -91,8 +108,8 @@ class DetailTableViewController: UITableViewController, StrDelegate {
         
         else if indexPath.section == SECTION_INGREDIENT {
             let ingredientCell = tableView.dequeueReusableCell(withIdentifier: CELL_INGREDIENT, for: indexPath) as! IngredientsTableViewCell
-            ingredientCell.nameLabel?.text = "1111111111"
-            ingredientCell.meaurementLabel?.text = "21333233323333"
+            ingredientCell.nameLabel?.text = measurements[indexPath.row].ingreName
+            ingredientCell.meaurementLabel?.text = measurements[indexPath.row].measureName
             return ingredientCell
         }
         
@@ -125,9 +142,17 @@ class DetailTableViewController: UITableViewController, StrDelegate {
             let destination = segue.destination as! EditInstructionViewController
             destination.introDelegate = self
         }
+        if segue.identifier == "selectIngreSegue" {
+            let destination = segue.destination as! AddIngrendientTableViewController
+            destination.measureDelegate = self
+        }
+
 
     }
 }
+
+
+
 
 
 
@@ -146,9 +171,17 @@ extension DetailTableViewController {
             introStr = editIntro
             tableView.reloadSections([SECTION_INSTRUCTION], with: .automatic)
         },completion: nil)
+        print(introStr)
         return true
     }
-    func measurementDelegate(_ Str: String) -> Bool {
+    func measurementDelegate(_ selectMeasure: MeasureItem) -> Bool {
+        tableView.performBatchUpdates({
+            self.measurements.append(selectMeasure)
+            tableView.insertRows(at: [IndexPath(row: measurements.count-1 , section: SECTION_INGREDIENT)], with: .automatic)
+            tableView.reloadSections([SECTION_INGREDIENT], with: .automatic)
+        },completion: nil)
+        print("measurements.count")
+        print(measurements.count)
         return true
     }
 }

@@ -69,6 +69,7 @@ class MyMealTableViewController: UITableViewController, DatabaseListener {
             let meal = myMeals[indexPath.row]
             mealCell.textLabel?.text = meal.name
             mealCell.detailTextLabel?.text = meal.instructions
+            mealCell.detailTextLabel!.numberOfLines = 5
             return mealCell
         }
 

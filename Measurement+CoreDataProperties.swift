@@ -23,5 +23,4 @@ extension Measurement {
 }
 
 extension Measurement : Identifiable {
-
 }

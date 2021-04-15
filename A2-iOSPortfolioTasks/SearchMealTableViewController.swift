@@ -16,14 +16,9 @@ class SearchMealTableViewController: UITableViewController, UISearchBarDelegate 
     let CELL_SEARCH = "searchMealCell"
     let CELL_ADD = "addSearchMealCell"
     
-    let MEAL_REQUEST_STRING = "www.themealdb.com/api/json/v1/1/search.php?f=a"
-    
-    var mealJson: MealJson? = nil
-    
-    
-    var allMeals: [Meal] = []
-    var filterMeals: [Meal] = []
-    
+    let MEAL_REQUEST_STRING = "https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata"
+        
+    var meals: [MealFinalItem] = []
     var noResult: Bool = true
     
     var indicator = UIActivityIndicatorView()
@@ -42,76 +37,67 @@ class SearchMealTableViewController: UITableViewController, UISearchBarDelegate 
         
         navigationItem.hidesSearchBarWhenScrolling = false
         
-        //加载视图
         indicator.style = UIActivityIndicatorView.Style.large
         indicator.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(indicator)
-        
         NSLayoutConstraint.activate([
             indicator.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             indicator.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
         ])
+        
+        
     }
     
-    // MARK: - Add Meal Delegate
-    func addMeal(_ newMeal: Meal) -> Bool {
-        tableView.performBatchUpdates({
-            allMeals.append(newMeal)
-            filterMeals.append(newMeal)
-            
-            tableView.insertRows(at: [IndexPath(row: filterMeals.count-1, section: SECTION_SEARCH)], with: .automatic)
-            tableView.reloadSections([SECTION_ADD], with: .automatic)
-        }, completion: nil)
-        return true
-    }
-    
+//    // MARK: - Add Meal Delegate
+//    func addMeal(_ newMeal: Meal) -> Bool {
+//        tableView.performBatchUpdates({
+//            allMeals.append(newMeal)
+//            filterMeals.append(newMeal)
+//
+//            tableView.insertRows(at: [IndexPath(row: filterMeals.count-1, section: SECTION_SEARCH)], with: .automatic)
+//            tableView.reloadSections([SECTION_ADD], with: .automatic)
+//        }, completion: nil)
+//        return true
+//    }
+//
     // MARK: - Search Protocol
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        filterMeals.removeAll()
+        meals.removeAll()
         tableView.reloadData()
-        
-        guard let searchText = searchBar.text else {
-            return
-        }
-        
         indicator.startAnimating()
         
-        HttpRequest.search(keyword: searchText) {content, _ in
-            self.mealJson = content
+        guard let searchText = searchBar.text
+        else {
+            return
         }
+        self.RequestJsonStr (queryStr: searchText)
+
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        switch section {
-            case SECTION_SEARCH:
-                return filterMeals.count
-            case SECTION_ADD:
-                if noResult {
-                    return 0
-                }
-                return 1
-            default:
-                return 0
-        }
+        return meals.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == SECTION_SEARCH {
             let searchMealCell = tableView.dequeueReusableCell(withIdentifier: CELL_SEARCH, for: indexPath)
-            let meal = filterMeals[indexPath.row]
+            let meal = meals[indexPath.row]
             
-            searchMealCell.textLabel?.text = meal.name
-            searchMealCell.detailTextLabel?.text = meal.instructions
+            searchMealCell.textLabel?.text = meal.strMeal
+            searchMealCell.detailTextLabel?.text = meal.strInstruction
+            
+            searchMealCell.detailTextLabel!.numberOfLines = 5
+
             
             return searchMealCell
         }
@@ -127,10 +113,9 @@ class SearchMealTableViewController: UITableViewController, UISearchBarDelegate 
 //        let ingrendientMeasurement = [indexPath.row]
 //        let heroAdded = databaseController?.addMeasurementToMeal(measurement: measurement, meal: databaseController!) ?? false
 //        if heroAdded {
-            navigationController?.popViewController(animated: false)
+//            navigationController?.popViewController(animated: false)
             return
 //        }
-//        displayMessage(title: "Party Full", message: "Unable to add more members to party")
 //        tableView.deselectRow(at: indexPath, animated: true)
 
     }
@@ -155,3 +140,64 @@ class SearchMealTableViewController: UITableViewController, UISearchBarDelegate 
         }
     }
 }
+
+
+
+
+extension SearchMealTableViewController {
+    func RequestJsonStr (queryStr:String)->() {
+        
+        print("进入副线程，开始请求")
+        let requestURL = URL(string: ("https://www.themealdb.com/api/json/v1/1/search.php?s=" + queryStr) )!
+        print("搜索\(queryStr)")
+        let task = URLSession.shared.dataTask(with: requestURL) { (data, response, error) in
+            // This closure is executed on a different thread at a later point in // time!
+            if let error = error {
+                print(error)
+                print("错误")
+                return
+            }
+            let temp = MealJsonToStruct(jsonData: data!)
+            if temp.tableData != nil{
+                print("成功搜索到结果！")
+                for index in 0..<temp.tableData!.meals.count {
+                    let finalMeal = MealFinalItem(mealItem: temp.tableData!.meals[index])
+                    print(finalMeal.strMeal as Any)
+                    print(finalMeal.strInstruction as Any)
+                    self.meals.append(finalMeal)
+                }
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            DispatchQueue.main.async {
+                self.indicator.stopAnimating()
+            }
+        }
+        task.resume()
+    }
+}
+
+class MealJsonToStruct {
+    struct Mealw: Codable {
+        let meals:[MealItem]
+    }
+    var tableData:Mealw?
+    var finalMeal: MealFinalItem? = nil
+    
+    init(jsonData: Data) {
+        do {
+            let decoder = JSONDecoder()
+            tableData = try decoder.decode(Mealw.self, from: jsonData)
+            print("Meals Rows in array: \(String(describing: tableData?.meals.count))")
+            print(tableData?.meals[0])
+        }
+        catch {
+            print("json decode failed:")
+            print (error)
+            tableData = nil
+        }
+    }
+}
+
+

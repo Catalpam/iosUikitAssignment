@@ -18,6 +18,7 @@ extension UIViewController{
 }
 
 let userDefaults = UserDefaults.standard
+var ingreDetail = ""
 
 @propertyWrapper
 struct UserDefaultWrapper<T> {
@@ -43,5 +44,6 @@ struct UserDefaultsStore {
     @UserDefaultWrapper("has_launch_before", defaultValue: false)
     static var hasLaunchBefore: Bool
 }
+
 
 

@@ -7,7 +7,6 @@
 
 import UIKit
 
-var ingreDetail = ""
 class AddIngrendientTableViewController: UITableViewController, DatabaseListener {
     var listenerType: ListenerType = .ingredient
     weak var databaseController: DatabaseProtocol?
@@ -15,6 +14,10 @@ class AddIngrendientTableViewController: UITableViewController, DatabaseListener
     var coreIngres: [Ingredient] = []
     let CELL_INGRE = "ingredientCell"
     var indicator = UIActivityIndicatorView()
+    var measure = MeasureItem(ingreName: "", measureName: "")
+    
+    weak var measureDelegate: StrDelegate?
+
 
     
     func onMealChange(change: DatabaseChange, meal: [Meal]) {
@@ -25,12 +28,49 @@ class AddIngrendientTableViewController: UITableViewController, DatabaseListener
         //DoNothing
     }
     
-    func onIngredientListChange(ingredientList: [Ingredient]) {
+    func onIngredientListChange(ingredientList: [Ingredient]) { 
         coreIngres = ingredientList
         tableView.reloadData()
     }
     
+    func textFieldAlart() {
+        let alertController = UIAlertController(title: "Please add measurement", message: nil, preferredStyle: .alert)
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Measurement"
+        }
+        self.present(alertController, animated: true)
+        let continueAction = UIAlertAction(title: "Continue",style: .default) { [self, weak alertController] _ in
+            guard let textFields = alertController?.textFields
+            else {
+                return
+            }
+            if let measurementText = textFields[0].text {
+                print("Measurement: \(measurementText)")
+                if measurementText.count != 0 {
+                    self.measure.measureName = measurementText
+                    let _ = measureDelegate?.measurementDelegate(self.measure)
+                    navigationController?.popViewController(animated: true)
+                    return
+                }
+                else {
+                    self.displayMessage(title: "No Input", message: "Please type valid measurement.")
+                }
+            }
+        }
+        let backAction = UIAlertAction(title: "Back",style: .default) { _ in
+            return
+        }
+        alertController.addAction(backAction)
+        alertController.addAction(continueAction)
+
+        
+    }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -45,6 +85,7 @@ class AddIngrendientTableViewController: UITableViewController, DatabaseListener
     override func viewDidLoad() {
         let appDelegate = (UIApplication.shared.delegate as? AppDelegate)
         databaseController = appDelegate?.databaseController
+
         
         super.viewDidLoad()
         
@@ -83,21 +124,10 @@ class AddIngrendientTableViewController: UITableViewController, DatabaseListener
             return 0
         }
     }
-    
+//
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         let ingre = coreIngres[indexPath.row]
         ingreDetail = ingre.strDescription!
-        self.tableView!.deselectRow(at: indexPath, animated: true)
-        let detailStr = ingre.strDescription
-        self.performSegue(withIdentifier: "ingreDetailSegue", sender: detailStr)
-    }
-    
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ingreDetailSegue" {
-            let controller = segue.destination as! IngredientDetailViewController
-            controller.detailStr = sender as? String
-        }
     }
 
     
@@ -127,6 +157,13 @@ class AddIngrendientTableViewController: UITableViewController, DatabaseListener
         
         return ingreCell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.measure.ingreName = coreIngres[indexPath.row].strIngredient!
+        self.textFieldAlart()
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
     
 }
 
@@ -158,7 +195,7 @@ class IngreJsonToStruct  {
     
     func returnIngreArray() -> [IngreItem]? {
         if tableData != nil {
-            print("json to str 成功")
+            print("json to str success")
             return tableData!.meals
         }
         else {

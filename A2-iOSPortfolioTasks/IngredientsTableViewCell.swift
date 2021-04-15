@@ -24,3 +24,9 @@ class IngredientsTableViewCell: UITableViewCell {
     }
 
 }
+
+var measureItems: [MeasureItem] = []
+struct MeasureItem: Codable {
+    var ingreName: String
+    var measureName: String
+}

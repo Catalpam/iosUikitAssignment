@@ -15,6 +15,10 @@ protocol AddMealDelegate: AnyObject {
 protocol StrDelegate: AnyObject {
     func nameDelegate(_ editName: String) -> Bool
     func introductionDelegate(_ editIntro: String) -> Bool
-    func measurementDelegate(_ editMeasure: String) -> Bool
+    func measurementDelegate(_ editMeasure: MeasureItem) -> Bool
+}
+
+protocol IngreDelegate: AnyObject {
+    func addMeal(_ newIngre: Measurement) -> Bool
 }
 
