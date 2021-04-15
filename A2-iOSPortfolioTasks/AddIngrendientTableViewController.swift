@@ -15,11 +15,6 @@ class AddIngrendientTableViewController: UITableViewController {
         super.viewDidLoad()
         let temp = IngreJsonToStruct(jsonStr: ingreJson)
         ingres = temp.returnIngreArray()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
@@ -31,13 +26,22 @@ class AddIngrendientTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        if ingres == nil {
+            return 0
+        }
+        else {
+            return ingres!.count
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let ingreCell = tableView.dequeueReusableCell(withIdentifier: CELL_INGRE, for: indexPath)
         let ingre = ingres![indexPath.row]
         ingreCell.textLabel?.text = ingre.strIngredient
+        print(ingre.strDescription as Any)
+        if ingre.strDescription == nil {
+            ingreCell.accessoryType = .none
+        }
         return ingreCell
     }
 
@@ -91,7 +95,7 @@ class AddIngrendientTableViewController: UITableViewController {
 
 struct IngreItem: Codable {
     var strIngredient: String
-    var strDescription: String
+    var strDescription: String?
 }
 
 class IngreJsonToStruct  {
@@ -141,6 +145,12 @@ let ingreJson = """
                 "idIngredient": "1",
                 "strIngredient": "Chicken",
                 "strDescription": "The chie the mid-15th century BC, with",
+                "strType": null
+            },
+            {
+                "idIngredient": "2",
+                "strIngredient": "bus",
+                "strDescription": null,
                 "strType": null
             }
         ]

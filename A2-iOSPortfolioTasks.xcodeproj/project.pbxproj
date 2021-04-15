@@ -104,7 +104,6 @@
 			children = (
 				C0C21281261EC00B002BDC0F /* EditNameViewController.swift */,
 				C0C21284261EC178002BDC0F /* EditInstructionViewController.swift */,
-				C0C21287261EC370002BDC0F /* IngredientDetailViewController.swift */,
 			);
 			path = EditDetails;
 			sourceTree = "<group>";
@@ -180,6 +179,7 @@
 				C0C2128D261EC691002BDC0F /* MealCountTableViewCell.swift */,
 				C09A3A2E261F18B400DBD223 /* IngredientsTableViewCell.swift */,
 				C0C2128A261EC3DF002BDC0F /* AddIngrendientTableViewController.swift */,
+				C0C21287261EC370002BDC0F /* IngredientDetailViewController.swift */,
 				805D3ED82627D6A9000F745D /* DetailTableViewController.swift */,
 				805D3EDB2627DEC1000F745D /* EditDetails */,
 			);
