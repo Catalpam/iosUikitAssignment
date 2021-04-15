@@ -7,14 +7,43 @@
 
 import UIKit
 
-class AddIngrendientTableViewController: UITableViewController {
+class AddIngrendientTableViewController: UITableViewController, DatabaseListener {
+    var listenerType: ListenerType = .ingredient
     weak var databaseController: DatabaseProtocol?
     
+    func onMealChange(change: DatabaseChange, meal: [Meal]) {
+        //DoNothing
+    }
+    
+    func onMeasurementChange(change: DatabaseChange, ingredientMearsurement: [Measurement]) {
+        //DoNothing
+    }
+    
+    func onIngredientListChange(ingredientList: [Ingredient]) {
+        coreIngres = ingredientList
+        tableView.reloadData()
+    }
+    
+    
     var ingres: [IngreItem]? = nil
+    var coreIngres: [Ingredient]? = nil
     let CELL_INGRE = "ingredientCell"
     var indicator = UIActivityIndicatorView()
-    // Add a loading indicator view
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        databaseController?.addListener(listener: self)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        databaseController?.removeListener(listener: self)
+    }
+    
     override func viewDidLoad() {
+        let appDelegate = (UIApplication.shared.delegate as? AppDelegate)
+        databaseController = appDelegate?.databaseController
+        
+        // Add a loading indicator view
         indicator.style = UIActivityIndicatorView.Style.large
         indicator.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(indicator)
@@ -22,7 +51,9 @@ class AddIngrendientTableViewController: UITableViewController {
         indicator.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
         indicator.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
         ])
+        
         super.viewDidLoad()
+        
         indicator.startAnimating()
         RequestJsonStr ()
 
@@ -41,21 +72,40 @@ class AddIngrendientTableViewController: UITableViewController {
             return 0
         }
         else {
-            return ingres!.count
+            if coreIngres == nil{
+                return ingres!.count
+            }
+            else {
+                return coreIngres!.count
+            }
         }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let ingreCell = tableView.dequeueReusableCell(withIdentifier: CELL_INGRE, for: indexPath)
-        let ingre = ingres![indexPath.row]
-        if ingre.strDescription == nil {
-            ingreCell.accessoryType = .none
+        if coreIngres == nil{
+            let ingre = ingres![indexPath.row]
+            if ingre.strDescription == nil {
+                ingreCell.accessoryType = .none
+            }
+            else {
+                ingreCell.accessoryType = .detailButton
+            }
+            ingreCell.textLabel?.text = ingre.strIngredient
+
         }
         else {
-            ingreCell.accessoryType = .detailButton
+            let ingre = coreIngres![indexPath.row]
+            if ingre.strDescription == nil {
+                ingreCell.accessoryType = .none
+            }
+            else {
+                ingreCell.accessoryType = .detailButton
+            }
+            ingreCell.textLabel?.text = ingre.strIngredient
+            print(ingre.strDescription as Any)
+
         }
-        ingreCell.textLabel?.text = ingre.strIngredient
-        print(ingre.strDescription as Any)
         return ingreCell
     }
     
@@ -153,13 +203,13 @@ extension AddIngrendientTableViewController {
                 print(error)
                 return
             }
-            do {
-                let temp = IngreJsonToStruct(jsonData: data!)
-                self.ingres = temp.returnIngreArray()
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+            let temp = IngreJsonToStruct(jsonData: data!)
+            self.ingres = temp.returnIngreArray()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
+            
+            let _ = self.databaseController?.addIngredient(ingreItem: self.ingres![0])
             
             DispatchQueue.main.async {
                 self.indicator.stopAnimating()
