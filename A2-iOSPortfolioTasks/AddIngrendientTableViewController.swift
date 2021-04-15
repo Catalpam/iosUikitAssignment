@@ -103,9 +103,8 @@ class AddIngrendientTableViewController: UITableViewController, DatabaseListener
                 ingreCell.accessoryType = .detailButton
             }
             ingreCell.textLabel?.text = ingre.strIngredient
-            print(ingre.strDescription as Any)
-
         }
+        
         return ingreCell
     }
     
@@ -177,7 +176,7 @@ class IngreJsonToStruct  {
             print("\n\n\n\n\n\n")
         }
         catch {
-            print("json解包失败")
+            print("json decode failed:")
             print (error)
             tableData = nil
         }
@@ -209,8 +208,9 @@ extension AddIngrendientTableViewController {
                 self.tableView.reloadData()
             }
             
-            let _ = self.databaseController?.addIngredient(ingreItem: self.ingres![0])
-            
+            for index in 0..<self.ingres!.count {
+                let _ = self.databaseController?.addIngredient(ingreItem: self.ingres![index])
+            }
             DispatchQueue.main.async {
                 self.indicator.stopAnimating()
             }
