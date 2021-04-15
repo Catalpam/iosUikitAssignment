@@ -8,10 +8,13 @@
 import UIKit
 
 class AddIngrendientTableViewController: UITableViewController {
-
+    
+    var ingres: [IngreItem]? = nil
+    let CELL_INGRE = "ingredientCell"
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let temp = IngreJsonToStruct(jsonStr: ingreJson)
+        ingres = temp.returnIngreArray()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -23,23 +26,20 @@ class AddIngrendientTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 1
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        let ingreCell = tableView.dequeueReusableCell(withIdentifier: CELL_INGRE, for: indexPath)
+        let ingre = ingres![indexPath.row]
+        ingreCell.textLabel?.text = ingre.strIngredient
+        return ingreCell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -48,7 +48,8 @@ class AddIngrendientTableViewController: UITableViewController {
         return true
     }
     */
-
+    
+    /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -58,6 +59,7 @@ class AddIngrendientTableViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
+    */
 
     /*
     // Override to support rearranging the table view.
@@ -85,3 +87,63 @@ class AddIngrendientTableViewController: UITableViewController {
     */
 
 }
+
+
+struct IngreItem: Codable {
+    var strIngredient: String
+    var strDescription: String
+}
+
+class IngreJsonToStruct  {
+    struct Ingresw: Codable {
+        let meals: [IngreItem]
+    }
+    var tableData:Ingresw?
+    init(jsonStr: String) {
+        let jsonData = jsonStr.data(using: .utf8)!
+        do {
+            let decoder = JSONDecoder()
+            tableData = try decoder.decode(Ingresw.self, from: jsonData)
+            print("Rows in array: \(String(describing: tableData?.meals.count))")
+            print("\n\n\n\n\n\n")
+        }
+        catch {
+            print("json解包失败")
+            print (error)
+            tableData = nil
+        }
+    }
+    
+    func returnIngreArray() -> [IngreItem]? {
+        if tableData != nil {
+            print("json to str 成功")
+            return tableData!.meals
+        }
+        else {
+            return nil
+        }
+    }
+}
+func RequestJsonStr ()->() {
+    let requestURL = URL(string: "https://www.themealdb.com/api/json/v1/1/list.php?i=list")!
+    let task = URLSession.shared.dataTask(with: requestURL) {
+        (data, response, error) in // This closure is executed on a different thread at a later point in // time!
+        
+    }
+    task.resume()
+}
+
+let ingreJson = """
+{
+    "meals":
+        [
+            {
+                "idIngredient": "1",
+                "strIngredient": "Chicken",
+                "strDescription": "The chie the mid-15th century BC, with",
+                "strType": null
+            }
+        ]
+}
+"""
+

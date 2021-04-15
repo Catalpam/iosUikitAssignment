@@ -84,6 +84,7 @@ class DetailTableViewController: UITableViewController, StrDelegate {
                     instructionCell.textLabel?.text = "Tap to enter Introduction"
                 }
             }
+            instructionCell.textLabel!.numberOfLines = 0
 
             return instructionCell
         }
@@ -150,5 +151,4 @@ extension DetailTableViewController {
     func measurementDelegate(_ Str: String) -> Bool {
         return true
     }
-    
 }

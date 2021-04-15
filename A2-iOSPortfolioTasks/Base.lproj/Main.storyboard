@@ -183,20 +183,20 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ingredientCell" id="ByW-dD-2LD" customClass="IngredientsTableViewCell" customModule="A2_iOSPortfolioTasks" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="142.5" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="142.5" width="414" height="43"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ByW-dD-2LD" id="AjA-Ju-eei">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owV-JF-S75">
-                                            <rect key="frame" x="20" y="11" width="374" height="21.5"/>
+                                            <rect key="frame" x="20" y="11" width="374" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EEF-pj-RSA">
-                                            <rect key="frame" x="20" y="11" width="374" height="21.5"/>
+                                            <rect key="frame" x="20" y="11" width="374" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -219,7 +219,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="addIngredientCell" textLabel="95p-ab-0x4" style="IBUITableViewCellStyleDefault" id="s9J-r0-zsB">
-                                <rect key="frame" x="0.0" y="186" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="185.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="s9J-r0-zsB" id="quf-0c-tbZ">
                                     <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
@@ -382,11 +382,11 @@
             <objects>
                 <tableViewController id="xOr-R0-tg3" customClass="AddIngrendientTableViewController" customModule="A2_iOSPortfolioTasks" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="xc9-E1-Svi">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="ingredientCell" textLabel="mPz-Lz-NR7" style="IBUITableViewCellStyleDefault" id="HtM-2d-HCY">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="ingredientCell" textLabel="mPz-Lz-NR7" style="IBUITableViewCellStyleDefault" id="HtM-2d-HCY">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HtM-2d-HCY" id="144-wv-Gcj">
@@ -423,11 +423,11 @@
             <objects>
                 <viewController id="vFe-FK-PZ0" customClass="IngredientDetailViewController" customModule="A2_iOSPortfolioTasks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qkY-cz-0Cm">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="描述描述描述" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4OX-4t-ZXR">
-                                <rect key="frame" x="20" y="20" width="374" height="768"/>
+                                <rect key="frame" x="20" y="108" width="374" height="734"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -457,19 +457,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3zS-1l-zKI">
-                                <rect key="frame" x="20" y="20" width="374" height="768"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iCo-L1-BTY">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CqX-Ym-2GD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="3zS-1l-zKI" firstAttribute="leading" secondItem="CqX-Ym-2GD" secondAttribute="leading" constant="20" id="7dS-bW-flP"/>
-                            <constraint firstItem="CqX-Ym-2GD" firstAttribute="trailing" secondItem="3zS-1l-zKI" secondAttribute="trailing" constant="20" id="Edt-Ed-1KT"/>
-                            <constraint firstItem="3zS-1l-zKI" firstAttribute="top" secondItem="CqX-Ym-2GD" secondAttribute="top" constant="20" id="Joc-2G-G3k"/>
-                            <constraint firstItem="CqX-Ym-2GD" firstAttribute="bottom" secondItem="3zS-1l-zKI" secondAttribute="bottom" constant="20" id="YtP-Fs-fZX"/>
+                            <constraint firstItem="CqX-Ym-2GD" firstAttribute="trailing" secondItem="iCo-L1-BTY" secondAttribute="trailing" id="MWG-d3-CeZ"/>
+                            <constraint firstItem="iCo-L1-BTY" firstAttribute="leading" secondItem="CqX-Ym-2GD" secondAttribute="leading" id="WOg-YC-Pke"/>
+                            <constraint firstItem="iCo-L1-BTY" firstAttribute="top" secondItem="CqX-Ym-2GD" secondAttribute="top" id="dCt-yA-dtW"/>
+                            <constraint firstItem="CqX-Ym-2GD" firstAttribute="bottom" secondItem="iCo-L1-BTY" secondAttribute="bottom" id="qEB-yM-wXc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Instructions" id="ou9-xN-pmH">
@@ -480,7 +482,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="introTextField" destination="3zS-1l-zKI" id="IzZ-yY-Myk"/>
+                        <outlet property="introTextField" destination="iCo-L1-BTY" id="V7M-ek-kgl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Hz-8z-SE3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -535,7 +537,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="C9T-ay-S79" kind="relationship" relationship="rootViewController" id="cZj-rC-sZI"/>
+                        <segue destination="xOr-R0-tg3" kind="relationship" relationship="rootViewController" id="Wfr-Tg-x9t"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WC9-hi-BQc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -544,10 +546,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="BmS-JX-NTN"/>
-        <segue reference="nQ6-Nk-nkn"/>
-        <segue reference="rmz-2a-oNm"/>
-        <segue reference="hqn-Wa-6Di"/>
+        <segue reference="aQN-iA-Bx3"/>
+        <segue reference="HCE-go-wsE"/>
+        <segue reference="Wfr-Tg-x9t"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="labelColor">

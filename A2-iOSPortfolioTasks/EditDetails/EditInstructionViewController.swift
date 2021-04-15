@@ -9,7 +9,7 @@ import UIKit
 
 class EditInstructionViewController: UIViewController {
     weak var introDelegate: StrDelegate?
-    @IBOutlet weak var introTextField: UITextField!
+    @IBOutlet weak var introTextField: UITextView!
     
     @IBAction func SaveButton(_ sender: Any) {
         if let intro = introTextField.text, !intro.isEmpty {
