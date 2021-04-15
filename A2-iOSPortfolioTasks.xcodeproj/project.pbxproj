@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8009DE5A2625DB39006B6E98 /* AddMealDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8009DE592625DB39006B6E98 /* AddMealDelegate.swift */; };
+		8009DE5A2625DB39006B6E98 /* AddDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8009DE592625DB39006B6E98 /* AddDelegate.swift */; };
 		805D3EBE2626667A000F745D /* MealData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D3EBD2626667A000F745D /* MealData.swift */; };
 		805D3EC52626D599000F745D /* MealDbController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D3EC42626D599000F745D /* MealDbController.swift */; };
 		805D3EC82626D7A2000F745D /* MeasurementDbController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D3EC72626D7A2000F745D /* MeasurementDbController.swift */; };
 		805D3ECB2626DA94000F745D /* defaultMealTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D3ECA2626DA94000F745D /* defaultMealTest.swift */; };
 		805D3ED22626E107000F745D /* IngredientDbContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D3ED12626E107000F745D /* IngredientDbContoller.swift */; };
-		805D3ED92627D6A9000F745D /* EditMealTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D3ED82627D6A9000F745D /* EditMealTableViewController.swift */; };
+		805D3ED92627D6A9000F745D /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D3ED82627D6A9000F745D /* DetailTableViewController.swift */; };
 		C0506A1926202C4B007FB71B /* MealModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0506A1726202C4B007FB71B /* MealModel.xcdatamodeld */; };
 		C0506A2126202FAB007FB71B /* Meal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0506A1B26202FAB007FB71B /* Meal+CoreDataClass.swift */; };
 		C0506A2226202FAB007FB71B /* Meal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0506A1C26202FAB007FB71B /* Meal+CoreDataProperties.swift */; };
@@ -42,13 +42,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8009DE592625DB39006B6E98 /* AddMealDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMealDelegate.swift; sourceTree = "<group>"; };
+		8009DE592625DB39006B6E98 /* AddDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDelegate.swift; sourceTree = "<group>"; };
 		805D3EBD2626667A000F745D /* MealData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealData.swift; sourceTree = "<group>"; };
 		805D3EC42626D599000F745D /* MealDbController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDbController.swift; sourceTree = "<group>"; };
 		805D3EC72626D7A2000F745D /* MeasurementDbController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementDbController.swift; sourceTree = "<group>"; };
 		805D3ECA2626DA94000F745D /* defaultMealTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = defaultMealTest.swift; sourceTree = "<group>"; };
 		805D3ED12626E107000F745D /* IngredientDbContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientDbContoller.swift; sourceTree = "<group>"; };
-		805D3ED82627D6A9000F745D /* EditMealTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMealTableViewController.swift; sourceTree = "<group>"; };
+		805D3ED82627D6A9000F745D /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
 		C0506A1826202C4B007FB71B /* MealModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MealModel.xcdatamodel; sourceTree = "<group>"; };
 		C0506A1B26202FAB007FB71B /* Meal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Meal+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		C0506A1C26202FAB007FB71B /* Meal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Meal+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
@@ -94,6 +94,24 @@
 				805D3EBD2626667A000F745D /* MealData.swift */,
 			);
 			path = WebData;
+			sourceTree = "<group>";
+		};
+		805D3EDB2627DEC1000F745D /* EditDetails */ = {
+			isa = PBXGroup;
+			children = (
+				C0C21281261EC00B002BDC0F /* EditNameViewController.swift */,
+				C0C21284261EC178002BDC0F /* EditInstructionViewController.swift */,
+				C0C21287261EC370002BDC0F /* IngredientDetailViewController.swift */,
+			);
+			path = EditDetails;
+			sourceTree = "<group>";
+		};
+		805D3EDC2627DEFE000F745D /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				C0C2129C261EF107002BDC0F /* DisplayMessage.swift */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		C0506A1526202BDC007FB71B /* DataModel */ = {
@@ -143,10 +161,11 @@
 		C0C21262261EB86A002BDC0F /* A2-iOSPortfolioTasks */ = {
 			isa = PBXGroup;
 			children = (
+				805D3EDC2627DEFE000F745D /* Tools */,
 				C0506A1626202C16007FB71B /* Database */,
 				C0506A1526202BDC007FB71B /* DataModel */,
 				C0C21263261EB86A002BDC0F /* AppDelegate.swift */,
-				8009DE592625DB39006B6E98 /* AddMealDelegate.swift */,
+				8009DE592625DB39006B6E98 /* AddDelegate.swift */,
 				C0C21265261EB86A002BDC0F /* SceneDelegate.swift */,
 				C0C21269261EB86A002BDC0F /* Main.storyboard */,
 				C0C2126C261EB86B002BDC0F /* Assets.xcassets */,
@@ -155,14 +174,11 @@
 				C0C21278261EB977002BDC0F /* MyMealTableViewController.swift */,
 				C0C2127B261EBA37002BDC0F /* SearchMealTableViewController.swift */,
 				C0C2127E261EBE3E002BDC0F /* CreateMealTableViewController.swift */,
-				805D3ED82627D6A9000F745D /* EditMealTableViewController.swift */,
-				C0C21281261EC00B002BDC0F /* EditNameViewController.swift */,
-				C0C21284261EC178002BDC0F /* EditInstructionViewController.swift */,
-				C0C21287261EC370002BDC0F /* IngredientDetailViewController.swift */,
 				C0C2128A261EC3DF002BDC0F /* AddIngrendientTableViewController.swift */,
 				C0C2128D261EC691002BDC0F /* MealCountTableViewCell.swift */,
-				C0C2129C261EF107002BDC0F /* DisplayMessage.swift */,
 				C09A3A2E261F18B400DBD223 /* IngredientsTableViewCell.swift */,
+				805D3ED82627D6A9000F745D /* DetailTableViewController.swift */,
+				805D3EDB2627DEC1000F745D /* EditDetails */,
 			);
 			path = "A2-iOSPortfolioTasks";
 			sourceTree = "<group>";
@@ -250,8 +266,8 @@
 				C09A3A2F261F18B400DBD223 /* IngredientsTableViewCell.swift in Sources */,
 				C0506A2A26203059007FB71B /* MulticastDelegate.swift in Sources */,
 				C0C21282261EC00B002BDC0F /* EditNameViewController.swift in Sources */,
-				8009DE5A2625DB39006B6E98 /* AddMealDelegate.swift in Sources */,
-				805D3ED92627D6A9000F745D /* EditMealTableViewController.swift in Sources */,
+				8009DE5A2625DB39006B6E98 /* AddDelegate.swift in Sources */,
+				805D3ED92627D6A9000F745D /* DetailTableViewController.swift in Sources */,
 				805D3EC82626D7A2000F745D /* MeasurementDbController.swift in Sources */,
 				C0506A2126202FAB007FB71B /* Meal+CoreDataClass.swift in Sources */,
 				C0C21279261EB977002BDC0F /* MyMealTableViewController.swift in Sources */,

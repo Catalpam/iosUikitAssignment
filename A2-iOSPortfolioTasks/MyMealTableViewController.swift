@@ -20,6 +20,7 @@ class MyMealTableViewController: UITableViewController, DatabaseListener {
     weak var databaseController: DatabaseProtocol?
     func onMealChange(change: DatabaseChange, meal: [Meal]) {
         myMeals = meal
+        tableView.reloadData()
     }
     
     func onMeasurementChange(change: DatabaseChange, ingredientMearsurement: [Measurement]) {
@@ -65,33 +66,27 @@ class MyMealTableViewController: UITableViewController, DatabaseListener {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == SECTION_MEAL {
             let mealCell = tableView.dequeueReusableCell(withIdentifier: CELL_MEAL, for: indexPath)
-            
             let meal = myMeals[indexPath.row]
-
             mealCell.textLabel?.text = meal.name
             mealCell.detailTextLabel?.text = meal.instructions
             return mealCell
         }
 
         let mealCountCell = tableView.dequeueReusableCell(withIdentifier: CELL_COUNT, for: indexPath)
-
         if myMeals.isEmpty {
             mealCountCell.textLabel?.text = "Click + to add new meal"
         }
         else {
             mealCountCell.textLabel?.text = "\(myMeals.count) Stored Meal"
         }
-
         return mealCountCell
     }
 
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-//        if indexPath.section == SECTION_MESUREMENT {
-//            return true
-//        }
-//
+        if indexPath.section == SECTION_MEAL {
+            return true
+        }
         return false
     }
 
@@ -120,8 +115,8 @@ class MyMealTableViewController: UITableViewController, DatabaseListener {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editMealSegue"{
-            let controller = segue.destination as! EditMealTableViewController
-            controller.nameStr = sender as? String
+            let controller = segue.destination as! DetailTableViewController
+            controller.nameStr = sender as! String
         }
     }
 }

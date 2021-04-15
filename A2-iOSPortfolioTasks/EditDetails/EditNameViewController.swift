@@ -7,12 +7,23 @@
 
 import UIKit
 
-class EditNameViewController: UIViewController {
+class EditNameViewController: UIViewController{
+    @IBOutlet weak var nameTextField: UITextField!
+    weak var nameDelegate: StrDelegate?
 
+    @IBAction func saveButton(_ sender: Any) {
+        if let name = nameTextField.text, !name.isEmpty {
+            let _ = nameDelegate?.nameDelegate(name)
+            navigationController?.popViewController(animated: true)
+            return
+        }
+        else {
+            displayMessage(title: "Error", message: "No Input")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
 

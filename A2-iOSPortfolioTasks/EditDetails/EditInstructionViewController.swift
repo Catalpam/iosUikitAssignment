@@ -8,11 +8,22 @@
 import UIKit
 
 class EditInstructionViewController: UIViewController {
-
+    weak var introDelegate: StrDelegate?
+    @IBOutlet weak var introTextField: UITextField!
+    
+    @IBAction func SaveButton(_ sender: Any) {
+        if let intro = introTextField.text, !intro.isEmpty {
+            let _ = introDelegate?.introductionDelegate(intro)
+            navigationController?.popViewController(animated: true)
+            return
+        }
+        else {
+            displayMessage(title: "Error", message: "No Input")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
 
