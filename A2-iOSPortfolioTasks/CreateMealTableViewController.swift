@@ -19,7 +19,6 @@ class CreateMealTableViewController: UITableViewController {
     let CELL_INGREDIENT = "ingredientCell"
     
     var meal: Meal?
-
     override func viewDidLoad() {
         super.viewDidLoad()
         

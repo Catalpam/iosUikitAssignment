@@ -8,7 +8,7 @@ import UIKit
 
 class MyMealTableViewController: UITableViewController, DatabaseListener {
 
-    let SECTION_MESUREMENT = 0
+    let SECTION_MEAL = 0
     let SECTION_COUNT = 1
 
     let CELL_MEAL = "myMealCell"
@@ -53,7 +53,7 @@ class MyMealTableViewController: UITableViewController, DatabaseListener {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         switch section {
-            case SECTION_MESUREMENT:
+            case SECTION_MEAL:
                 return myMeals.count
             case SECTION_COUNT:
                 return 1
@@ -63,7 +63,7 @@ class MyMealTableViewController: UITableViewController, DatabaseListener {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == SECTION_MESUREMENT {
+        if indexPath.section == SECTION_MEAL {
             let mealCell = tableView.dequeueReusableCell(withIdentifier: CELL_MEAL, for: indexPath)
             
             let meal = myMeals[indexPath.row]
@@ -74,13 +74,12 @@ class MyMealTableViewController: UITableViewController, DatabaseListener {
         }
 
         let mealCountCell = tableView.dequeueReusableCell(withIdentifier: CELL_COUNT, for: indexPath)
-            as! MealCountTableViewCell
 
         if myMeals.isEmpty {
-            mealCountCell.mealCountLabel?.text = "Click + to add new meal"
+            mealCountCell.textLabel?.text = "Click + to add new meal"
         }
         else {
-            mealCountCell.mealCountLabel?.text = "\(myMeals.count) Stored Meal"
+            mealCountCell.textLabel?.text = "\(myMeals.count) Stored Meal"
         }
 
         return mealCountCell
@@ -89,17 +88,17 @@ class MyMealTableViewController: UITableViewController, DatabaseListener {
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        if indexPath.section == SECTION_MESUREMENT {
-            return true
-        }
-
+//        if indexPath.section == SECTION_MESUREMENT {
+//            return true
+//        }
+//
         return false
     }
 
 
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete && indexPath.section == SECTION_MESUREMENT {
+        if editingStyle == .delete && indexPath.section == SECTION_MEAL {
             // Delete the row from the data source
             tableView.performBatchUpdates({
                 self.myMeals.remove(at: indexPath.row)
@@ -108,23 +107,21 @@ class MyMealTableViewController: UITableViewController, DatabaseListener {
             }, completion: nil)
         }
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == SECTION_MEAL {
+            let meal = myMeals[indexPath.row]
+            self.tableView!.deselectRow(at: indexPath, animated: true)
+            let nameStr = meal.name
+            self.performSegue(withIdentifier: "editMealSegue", sender: nameStr)
+
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editMealSegue"{
+            let controller = segue.destination as! EditMealTableViewController
+            controller.nameStr = sender as? String
+        }
+    }
 }
-
-
-
-
-
-//    func testMeal() {
-//        let ingMeas1 = Measurement(name: "vanila", quantity: "1 tsp")
-//        let ingMeas2 = Measurement(name: "bd", quantity: "7 tsp")
-//        let ingMeas3 = Measurement(name: "kjkg", quantity: "1/2 tsp")
-//
-//        let ings1 = [ingMeas1,ingMeas2,ingMeas3]
-//        let ings2 = [ingMeas2,ingMeas1,ingMeas3]
-//        let ings3 = [ingMeas3,ingMeas2,ingMeas1]
-//
-//        myMeals.append(Meal(name: "test2", instructions: "fjowerhgfjhuiwhouhvwbjguiw gowij gfwrtoipjg gtrwoijgihp0394 t58902ujogv 34t209ujgvw 435t980pgw t49028- g3408-23 425n3opugv8fern ergiopu8  n543 w-[0v/s;er fjh0-w4", ingredients: ings1))
-//        myMeals.append(Meal(name: "test1", instructions: "9028- g3408-23 425n3opugv8fern ergiopu8  n543 w-[0v/s;er fjh0-w4", ingredients: ings2))
-//        myMeals.append(Meal(name: "test3", instructions: "jogv 34t209ujgvw 435t980pgw t49028- g3408-23 425n3opugv8fern ergiopu8  n543 w-[0v/s;er fjh0-w4", ingredients: ings3))
-//    }
-
