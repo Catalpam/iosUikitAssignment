@@ -24,6 +24,11 @@ class DetailTableViewController: UITableViewController, StrDelegate, DatabaseLis
     
     var measurements: [MeasureItem] = []
     
+    @IBAction func saveButton(_ sender: Any) {
+        
+    }
+    
+
     func onMealChange(change: DatabaseChange, meal: [Meal]) {
         tableView.reloadData()
     }
@@ -69,23 +74,25 @@ class DetailTableViewController: UITableViewController, StrDelegate, DatabaseLis
             case SECTION_ADD:
                 return 1
             case SECTION_INGREDIENT:
-                return measurements.count
+                return (thisMeal?.strMeasures.count) ?? 0
             default:
                 return 0
         }
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == SECTION_NAME {
             let nameCell = tableView.dequeueReusableCell(withIdentifier: CELL_NAME, for: indexPath)
-            if meal?.name == nil {
-                if nameStr != "" {
-                    nameCell.textLabel?.text = nameStr
-                }
-                else {
-                    nameCell.textLabel?.text = "Tap to enter meal name"
-                }
+            if nameStr != "" {
+                nameCell.textLabel?.text = nameStr
+            }
+            else if thisMeal?.strMeal != nil {
+                nameCell.textLabel?.text = thisMeal!.strMeal!
+                nameStr = thisMeal!.strMeal!
+            }
+            else {
+                nameCell.textLabel?.text = "Tap to enter meal name"
             }
             
             return nameCell
@@ -93,23 +100,25 @@ class DetailTableViewController: UITableViewController, StrDelegate, DatabaseLis
         
         else if indexPath.section == SECTION_INSTRUCTION {
             let instructionCell = tableView.dequeueReusableCell(withIdentifier: CELL_INSTRUCTION, for: indexPath)
-            if meal?.instructions == nil {
-                if introStr != "" {
-                    instructionCell.textLabel?.text = introStr
-                }
-                else {
-                    instructionCell.textLabel?.text = "Tap to enter Introduction"
-                }
+            if introStr != "" {
+                instructionCell.textLabel?.text = introStr
             }
-            instructionCell.textLabel!.numberOfLines = 0
+            else if thisMeal?.strInstruction != nil {
+                instructionCell.textLabel?.text = thisMeal!.strInstruction!
+                introStr = thisMeal!.strInstruction!
+            }
+            else {
+                instructionCell.textLabel?.text = "Tap to enter Introduction"
+            }
 
+            instructionCell.textLabel!.numberOfLines = 0
             return instructionCell
         }
         
         else if indexPath.section == SECTION_INGREDIENT {
             let ingredientCell = tableView.dequeueReusableCell(withIdentifier: CELL_INGREDIENT, for: indexPath) as! IngredientsTableViewCell
-            ingredientCell.nameLabel?.text = measurements[indexPath.row].ingreName
-            ingredientCell.meaurementLabel?.text = measurements[indexPath.row].measureName
+            ingredientCell.nameLabel?.text = thisMeal?.strMeasures[indexPath.row]?.ingreName
+            ingredientCell.meaurementLabel?.text = thisMeal?.strMeasures[indexPath.row]?.measureName
             return ingredientCell
         }
         

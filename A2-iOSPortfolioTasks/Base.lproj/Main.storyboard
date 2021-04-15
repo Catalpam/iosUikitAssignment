@@ -16,11 +16,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="myMealCell" textLabel="AXy-fb-Njk" detailTextLabel="gFf-ro-vL0" style="IBUITableViewCellStyleSubtitle" id="BOS-zn-EqT">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="myMealCell" textLabel="AXy-fb-Njk" detailTextLabel="gFf-ro-vL0" style="IBUITableViewCellStyleSubtitle" id="BOS-zn-EqT">
                                 <rect key="frame" x="20" y="55.5" width="374" height="55.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BOS-zn-EqT" id="bfg-EX-1mo">
-                                    <rect key="frame" x="0.0" y="0.0" width="374" height="55.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="55.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AXy-fb-Njk">
@@ -40,7 +40,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="C9T-ay-S79" kind="show" identifier="editMealSegue" id="hqn-Wa-6Di"/>
+                                    <segue destination="C9T-ay-S79" kind="push" identifier="editMealSegue" id="hqn-Wa-6Di"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="myMealSizeCell" id="uXJ-th-fLf" customClass="MealCountTableViewCell" customModule="A2_iOSPortfolioTasks" customModuleProvider="target">
@@ -77,11 +77,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchMealCell" textLabel="QdG-nQ-dOp" detailTextLabel="ef2-eo-LVg" style="IBUITableViewCellStyleSubtitle" id="pOq-dg-gJV">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="searchMealCell" textLabel="QdG-nQ-dOp" detailTextLabel="ef2-eo-LVg" style="IBUITableViewCellStyleSubtitle" id="pOq-dg-gJV">
                                 <rect key="frame" x="20" y="55.5" width="374" height="55.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pOq-dg-gJV" id="cn2-84-09c">
-                                    <rect key="frame" x="0.0" y="0.0" width="374" height="55.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="55.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QdG-nQ-dOp">
@@ -101,7 +101,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="C9T-ay-S79" kind="show" id="Hce-ph-5be"/>
+                                    <segue destination="C9T-ay-S79" kind="push" id="Hce-ph-5be"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addSearchMealCell" textLabel="ClB-no-Mp8" style="IBUITableViewCellStyleDefault" id="teL-zX-1aH">
@@ -183,20 +183,20 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ingredientCell" id="fiY-9G-q3O" customClass="IngredientsTableViewCell" customModule="A2_iOSPortfolioTasks" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="142.5" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="142.5" width="414" height="43"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fiY-9G-q3O" id="AgA-IP-IwJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hC0-ZO-Fkx" userLabel="Name">
-                                            <rect key="frame" x="20" y="11" width="374" height="21.5"/>
+                                            <rect key="frame" x="20" y="11" width="374" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZhV-Eq-yh4" userLabel="Mearsurement">
-                                            <rect key="frame" x="20" y="11" width="374" height="21.5"/>
+                                            <rect key="frame" x="20" y="11" width="374" height="21"/>
                                             <color key="tintColor" systemColor="opaqueSeparatorColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -222,7 +222,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="addIngredientCell" textLabel="JqC-ba-DuJ" style="IBUITableViewCellStyleDefault" id="5Qj-Xm-eFH">
-                                <rect key="frame" x="0.0" y="186" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="185.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Qj-Xm-eFH" id="dsc-XC-617">
                                     <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
@@ -248,7 +248,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="MealDetail" id="Bj3-yB-zav">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="LHC-7R-eFc"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="LHC-7R-eFc">
+                            <connections>
+                                <action selector="saveButton:" destination="C9T-ay-S79" id="mDu-cv-crb"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="NavigationTitle" destination="Bj3-yB-zav" id="p0S-0K-jZt"/>
@@ -430,7 +434,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Hce-ph-5be"/>
+        <segue reference="hqn-Wa-6Di"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="labelColor">
