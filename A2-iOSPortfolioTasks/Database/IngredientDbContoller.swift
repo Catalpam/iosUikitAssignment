@@ -4,9 +4,6 @@
 //
 //  Created by Zigeng Feng on 2021/4/14.
 //
-
-import Foundation
-
 import Foundation
 import CoreData
 import UIKit
@@ -28,7 +25,7 @@ extension CoreDataController {
     func fetchAllIngredient() -> [Ingredient] {
         if ingredientFetchedResultsController == nil {
             let fetchRequest: NSFetchRequest<Ingredient> = Ingredient.fetchRequest()
-            let nameSortDescriptor = NSSortDescriptor(key: "strDescription", ascending: true)
+            let nameSortDescriptor = NSSortDescriptor(key: "strIngredient", ascending: true)
             fetchRequest.sortDescriptors = [nameSortDescriptor]
 
             ingredientFetchedResultsController = NSFetchedResultsController<Ingredient> (

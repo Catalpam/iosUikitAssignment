@@ -8,8 +8,11 @@
 import UIKit
 
 class IngredientDetailViewController: UIViewController {
-
+    var detailStr: String? = nil
+    @IBOutlet weak var textView: UITextView!
     override func viewDidLoad() {
+        textView.text = ingreDetail
+
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
