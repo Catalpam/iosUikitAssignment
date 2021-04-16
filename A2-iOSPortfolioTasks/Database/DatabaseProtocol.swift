@@ -48,4 +48,6 @@ protocol DatabaseProtocol: AnyObject {
     func MeasurementFromMeal(measurement: Measurement, meal: Meal)
     
     func cleanup()
+    func removeMeasurementFromMeal(measurement: Measurement, meal: Meal)
+
 }

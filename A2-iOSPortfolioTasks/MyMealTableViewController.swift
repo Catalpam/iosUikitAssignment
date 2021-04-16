@@ -23,6 +23,9 @@ class MyMealTableViewController: UITableViewController, DatabaseListener {
         tableView.reloadData()
     }
     
+    var meals: [MealFinalItem] = []
+
+    
     func onMeasurementChange(change: DatabaseChange, ingredientMearsurement: [Measurement]) {
         //Do nothing
     }
@@ -105,19 +108,28 @@ class MyMealTableViewController: UITableViewController, DatabaseListener {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == SECTION_MEAL {
-            let meal = myMeals[indexPath.row]
-            self.tableView!.deselectRow(at: indexPath, animated: true)
-            let nameStr = meal.name
-            self.performSegue(withIdentifier: "editMealSegue", sender: nameStr)
-
-        }
+//
+//        if indexPath.section == SECTION_MEAL {
+//            let meal = myMeals[indexPath.row]
+//            thisMeal = meals[indexPath.row]
+//                return
+//
+//            self.tableView!.deselectRow(at: indexPath, animated: true)
+//            let nameStr = meal.name
+////            self.performSegue(withIdentifier: "editMealSegue", sender: nameStr)
+//        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editMealSegue"{
+            let indexPath = self.tableView.indexPathForSelectedRow!
+            print(indexPath.row)
+            print("\n\n\n\n\n")
+            thisMeal?.strMeal = myMeals[indexPath.row].name
+            thisMeal?.strInstruction = myMeals[indexPath.row].instructions
+            thisMeal?.strMeasures
+
             let controller = segue.destination as! DetailTableViewController
-            controller.nameStr = sender as! String
         }
     }
 }

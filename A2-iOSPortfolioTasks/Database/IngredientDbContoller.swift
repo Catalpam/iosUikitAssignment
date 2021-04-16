@@ -52,6 +52,7 @@ extension CoreDataController {
         let ingredient = NSEntityDescription.insertNewObject(forEntityName:"Ingredient",into: persistentContainer.viewContext) as! Ingredient
         ingredient.strIngredient = ingreItem.strIngredient
         ingredient.strDescription = ingreItem.strDescription
+        print("try add Ingredient")
         return ingredient
     }
 }

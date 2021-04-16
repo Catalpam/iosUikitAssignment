@@ -9,14 +9,14 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Measurement" inverseName="measurementInMeal" inverseEntity="Measurement"/>
     </entity>
-    <entity name="Measurement" representedClassName="Measurement" syncable="YES">
+    <entity name="Measurement" representedClassName=".Measurement" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="quantity" optional="YES" attributeType="String"/>
         <relationship name="measurementInMeal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Meal" inverseName="ingredients" inverseEntity="Meal"/>
     </entity>
     <elements>
         <element name="Ingredient" positionX="-124" positionY="39" width="128" height="73"/>
-        <element name="Meal" positionX="-241" positionY="131" width="128" height="88"/>
+        <element name="Meal" positionX="-241" positionY="131" width="128" height="14"/>
         <element name="Measurement" positionX="-28" positionY="129" width="128" height="74"/>
     </elements>
 </model>

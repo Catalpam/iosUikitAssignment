@@ -10,6 +10,6 @@ import Foundation
 import CoreData
 
 @objc(IngrendientMeasurement)
-public class Measurement: NSManagedObject {
+public class Measurement: NSManagedObject{
 
 }

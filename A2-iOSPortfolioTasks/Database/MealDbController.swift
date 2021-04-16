@@ -29,18 +29,58 @@ extension CoreDataController {
         persistentContainer.viewContext.delete(meal)
     }
     
+//    func fetchAllMeals() -> [Meal] {
+//        var meals = [Meal]()
+//        let request: NSFetchRequest<Meal> = Meal.fetchRequest()
+//
+//        do {
+//            try meals = persistentContainer.viewContext.fetch(request)
+//        } catch {
+//            print("Fetch request failed with error: \(error)")
+//        }
+//
+//        return meals
+//    }
+    
     func fetchAllMeals() -> [Meal] {
-        var meals = [Meal]()
-        let request: NSFetchRequest<Meal> = Meal.fetchRequest()
-        
-        do {
-            try meals = persistentContainer.viewContext.fetch(request)
-        } catch {
-            print("Fetch request failed with error: \(error)")
+        if measurementFetchedResultsController == nil {
+            
+            let fetchRequest: NSFetchRequest<Meal> = Meal.fetchRequest()
+            let nameSortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+            fetchRequest.sortDescriptors = [nameSortDescriptor]
+
+            mealFetchedResultsController = NSFetchedResultsController<Meal> (
+                fetchRequest:fetchRequest,
+                managedObjectContext: persistentContainer.viewContext,
+                sectionNameKeyPath: nil,
+                cacheName: nil
+            )
+            mealFetchedResultsController?.delegate = self
+            
+            do {
+                try mealFetchedResultsController?.performFetch()
+            } catch {
+                print("Fetch request failed with error: \(error)")
+            }
         }
-        
-        return meals
+        if let meals = mealFetchedResultsController?.fetchedObjects {
+            return meals
+        }
+        return [Meal]()
     }
 
+
+    
+    func addMeasurementToMeal(measurement: Measurement, meal: Meal) -> Bool {
+        guard let ingres = meal.ingredients, ingres.contains(measurement) == false else {
+            return false
+        }
+        meal.addToIngredients(measurement)
+        return true
+    }
+    
+    func removeMeasurementFromMeal(measurement: Measurement, meal: Meal) {
+            meal.removeFromIngredients(measurement)
+    }
 
 }

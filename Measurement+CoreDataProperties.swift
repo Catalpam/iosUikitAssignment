@@ -19,7 +19,7 @@ extension Measurement {
     @NSManaged public var name: String?
     @NSManaged public var quantity: String?
     @NSManaged public var measurementInMeal: Meal?
-
+    
 }
 
 extension Measurement : Identifiable {

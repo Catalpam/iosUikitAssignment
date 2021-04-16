@@ -14,7 +14,7 @@ class AddIngrendientTableViewController: UITableViewController, DatabaseListener
     var coreIngres: [Ingredient] = []
     let CELL_INGRE = "ingredientCell"
     var indicator = UIActivityIndicatorView()
-    var measure = MeasureItem(ingreName: "", measureName: "")
+    var measure = MeasureItem(name: "", quantity: "")
     
     weak var measureDelegate: StrDelegate?
 
@@ -47,7 +47,7 @@ class AddIngrendientTableViewController: UITableViewController, DatabaseListener
             if let measurementText = textFields[0].text {
                 print("Measurement: \(measurementText)")
                 if measurementText.count != 0 {
-                    self.measure.measureName = measurementText
+                    self.measure.quantity = measurementText
                     let _ = measureDelegate?.measurementDelegate(self.measure)
                     navigationController?.popViewController(animated: true)
                     return
@@ -159,7 +159,7 @@ class AddIngrendientTableViewController: UITableViewController, DatabaseListener
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.measure.ingreName = coreIngres[indexPath.row].strIngredient!
+        self.measure.name = coreIngres[indexPath.row].strIngredient!
         self.textFieldAlart()
         tableView.deselectRow(at: indexPath, animated: true)
     }

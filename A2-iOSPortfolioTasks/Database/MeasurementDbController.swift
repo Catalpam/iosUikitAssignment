@@ -12,37 +12,61 @@ import UIKit
 extension CoreDataController {
 
     func addMeasurement(name: String, quantity: String) -> Measurement {
-        let Measurement = NSEntityDescription.insertNewObject(forEntityName: "Measurement", into: persistentContainer.viewContext) as! Measurement
-        Measurement.name = name
-        Measurement.quantity = quantity
-        
-        return Measurement
+        let measurement = NSEntityDescription.insertNewObject(forEntityName: "Measurement", into: persistentContainer.viewContext) as! Measurement
+        measurement.name = name
+        measurement.quantity = quantity
+        print("try addMeasurement")
+        return measurement
     }
+    
+    
+
     
     func deleteMeasurement(measurement: Measurement) {
         persistentContainer.viewContext.delete(measurement)
     }
-    
-    func addMeasurementToMeal(measurement: Measurement, meal: Meal) -> Bool {
-        meal.addToIngredients(measurement)
-        return true
+        
+//    func fetchAllMeasures() -> [Measurement] {
+//        var measurement = [Measurement]()
+//        let request: NSFetchRequest<Measurement> = Measurement.fetchRequest()
+//
+//        do {
+//            try measurement = persistentContainer.viewContext.fetch(request)
+//        } catch {
+//            print("Fetch request failed with error: \(error)")
+//        }
+//
+//        return measurement
+//    }
+//
+
+    func MeasurementFromMeal(measurement: Measurement, meal: Meal) {
     }
     
     func fetchAllMeasures() -> [Measurement] {
-        var measurement = [Measurement]()
-        let request: NSFetchRequest<Measurement> = Measurement.fetchRequest()
-        
-        do {
-            try measurement = persistentContainer.viewContext.fetch(request)
-        } catch {
-            print("Fetch request failed with error: \(error)")
+        if measurementFetchedResultsController == nil {
+            let fetchRequest: NSFetchRequest<Measurement> = Measurement.fetchRequest()
+            let nameSortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+            fetchRequest.sortDescriptors = [nameSortDescriptor]
+
+            measurementFetchedResultsController = NSFetchedResultsController<Measurement> (
+                fetchRequest:fetchRequest,
+                managedObjectContext: persistentContainer.viewContext,
+                sectionNameKeyPath: nil,
+                cacheName: nil
+            )
+            measurementFetchedResultsController?.delegate = self
+            
+            do {
+                try measurementFetchedResultsController?.performFetch()
+            } catch {
+                print("Fetch request failed with error: \(error)")
+            }
         }
-        
-        return measurement
-    }
-
-
-    func MeasurementFromMeal(measurement: Measurement, meal: Meal) {
+        if let measurements = measurementFetchedResultsController?.fetchedObjects {
+            return measurements
+        }
+        return [Measurement]()
     }
 
 }
