@@ -56,6 +56,12 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
             }
         }
     }
+    func noChange() {
+        if persistentContainer.viewContext.hasChanges {
+            persistentContainer.viewContext.rollback()
+        }
+    }
+
     
     func addListener(listener: DatabaseListener) {
         listeners.addDelegate(listener)

@@ -24,23 +24,7 @@ extension CoreDataController {
         meal.instructions = instruction
         return meal
     }
-    
-    func deleteMeal(meal: Meal) {
-        persistentContainer.viewContext.delete(meal)
-    }
-    
-//    func fetchAllMeals() -> [Meal] {
-//        var meals = [Meal]()
-//        let request: NSFetchRequest<Meal> = Meal.fetchRequest()
-//
-//        do {
-//            try meals = persistentContainer.viewContext.fetch(request)
-//        } catch {
-//            print("Fetch request failed with error: \(error)")
-//        }
-//
-//        return meals
-//    }
+        
     
     func fetchAllMeals() -> [Meal] {
         if measurementFetchedResultsController == nil {

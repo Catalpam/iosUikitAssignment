@@ -222,6 +222,7 @@ extension AddIngrendientTableViewController {
             for index in 0..<self.ingres!.count {
                 let _ = self.databaseController?.addIngredient(ingreItem: self.ingres![index])
             }
+            self.databaseController?.cleanup()
             DispatchQueue.main.async {
                 self.indicator.stopAnimating()
             }

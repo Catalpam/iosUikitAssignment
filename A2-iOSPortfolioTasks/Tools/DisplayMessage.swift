@@ -19,7 +19,7 @@ extension UIViewController{
 
 let userDefaults = UserDefaults.standard
 var ingreDetail = ""
-
+var ingres: [Measurement] = []
 @propertyWrapper
 struct UserDefaultWrapper<T> {
     let key: String

@@ -15,6 +15,8 @@
 		805D3ED22626E107000F745D /* IngredientDbContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D3ED12626E107000F745D /* IngredientDbContoller.swift */; };
 		805D3ED92627D6A9000F745D /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D3ED82627D6A9000F745D /* DetailTableViewController.swift */; };
 		80B6FE0C2628CC99007C57B5 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6FE0B2628CC99007C57B5 /* SearchModel.swift */; };
+		80B6FE10262963E0007C57B5 /* ChildContextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6FE0F262963E0007C57B5 /* ChildContextController.swift */; };
+		80B6FE132629801C007C57B5 /* CreateMealController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6FE122629801C007C57B5 /* CreateMealController.swift */; };
 		C0506A1926202C4B007FB71B /* MealModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0506A1726202C4B007FB71B /* MealModel.xcdatamodeld */; };
 		C0506A2126202FAB007FB71B /* Meal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0506A1B26202FAB007FB71B /* Meal+CoreDataClass.swift */; };
 		C0506A2226202FAB007FB71B /* Meal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0506A1C26202FAB007FB71B /* Meal+CoreDataProperties.swift */; };
@@ -33,7 +35,7 @@
 		C0C21270261EB86B002BDC0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0C2126E261EB86B002BDC0F /* LaunchScreen.storyboard */; };
 		C0C21279261EB977002BDC0F /* MyMealTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C21278261EB977002BDC0F /* MyMealTableViewController.swift */; };
 		C0C2127C261EBA37002BDC0F /* SearchMealTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C2127B261EBA37002BDC0F /* SearchMealTableViewController.swift */; };
-		C0C2127F261EBE3E002BDC0F /* CreateMealTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C2127E261EBE3E002BDC0F /* CreateMealTableViewController.swift */; };
+		C0C2127F261EBE3E002BDC0F /* AddMealTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C2127E261EBE3E002BDC0F /* AddMealTableViewController.swift */; };
 		C0C21282261EC00B002BDC0F /* EditNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C21281261EC00B002BDC0F /* EditNameViewController.swift */; };
 		C0C21285261EC178002BDC0F /* EditInstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C21284261EC178002BDC0F /* EditInstructionViewController.swift */; };
 		C0C21288261EC370002BDC0F /* IngredientDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C21287261EC370002BDC0F /* IngredientDetailViewController.swift */; };
@@ -51,6 +53,8 @@
 		805D3ED12626E107000F745D /* IngredientDbContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientDbContoller.swift; sourceTree = "<group>"; };
 		805D3ED82627D6A9000F745D /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
 		80B6FE0B2628CC99007C57B5 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
+		80B6FE0F262963E0007C57B5 /* ChildContextController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildContextController.swift; sourceTree = "<group>"; };
+		80B6FE122629801C007C57B5 /* CreateMealController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMealController.swift; sourceTree = "<group>"; };
 		C0506A1826202C4B007FB71B /* MealModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MealModel.xcdatamodel; sourceTree = "<group>"; };
 		C0506A1B26202FAB007FB71B /* Meal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Meal+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		C0506A1C26202FAB007FB71B /* Meal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Meal+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
@@ -70,7 +74,7 @@
 		C0C2126F261EB86B002BDC0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C0C21278261EB977002BDC0F /* MyMealTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMealTableViewController.swift; sourceTree = "<group>"; };
 		C0C2127B261EBA37002BDC0F /* SearchMealTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMealTableViewController.swift; sourceTree = "<group>"; };
-		C0C2127E261EBE3E002BDC0F /* CreateMealTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMealTableViewController.swift; sourceTree = "<group>"; };
+		C0C2127E261EBE3E002BDC0F /* AddMealTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMealTableViewController.swift; sourceTree = "<group>"; };
 		C0C21281261EC00B002BDC0F /* EditNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNameViewController.swift; sourceTree = "<group>"; };
 		C0C21284261EC178002BDC0F /* EditInstructionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInstructionViewController.swift; sourceTree = "<group>"; };
 		C0C21287261EC370002BDC0F /* IngredientDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientDetailViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +143,7 @@
 				805D3ECA2626DA94000F745D /* defaultMealTest.swift */,
 				805D3EC42626D599000F745D /* MealDbController.swift */,
 				805D3EC72626D7A2000F745D /* MeasurementDbController.swift */,
+				80B6FE0F262963E0007C57B5 /* ChildContextController.swift */,
 				805D3ED12626E107000F745D /* IngredientDbContoller.swift */,
 			);
 			path = Database;
@@ -175,11 +180,12 @@
 				805D3EBC2626663C000F745D /* WebData */,
 				C0C21278261EB977002BDC0F /* MyMealTableViewController.swift */,
 				C0C2127B261EBA37002BDC0F /* SearchMealTableViewController.swift */,
-				C0C2127E261EBE3E002BDC0F /* CreateMealTableViewController.swift */,
+				C0C2127E261EBE3E002BDC0F /* AddMealTableViewController.swift */,
 				C0C2128D261EC691002BDC0F /* MealCountTableViewCell.swift */,
 				C09A3A2E261F18B400DBD223 /* IngredientsTableViewCell.swift */,
 				C0C21287261EC370002BDC0F /* IngredientDetailViewController.swift */,
 				805D3ED82627D6A9000F745D /* DetailTableViewController.swift */,
+				80B6FE122629801C007C57B5 /* CreateMealController.swift */,
 				C0C2128A261EC3DF002BDC0F /* AddIngrendientTableViewController.swift */,
 				805D3EDB2627DEC1000F745D /* EditDetails */,
 			);
@@ -256,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80B6FE10262963E0007C57B5 /* ChildContextController.swift in Sources */,
 				C0506A2426202FAB007FB71B /* Ingredient+CoreDataProperties.swift in Sources */,
 				C0506A2D262030CA007FB71B /* DatabaseProtocol.swift in Sources */,
 				805D3EBE2626667A000F745D /* MealModel.swift in Sources */,
@@ -267,6 +274,7 @@
 				C0C2127C261EBA37002BDC0F /* SearchMealTableViewController.swift in Sources */,
 				C0C21264261EB86A002BDC0F /* AppDelegate.swift in Sources */,
 				C0C2128B261EC3DF002BDC0F /* AddIngrendientTableViewController.swift in Sources */,
+				80B6FE132629801C007C57B5 /* CreateMealController.swift in Sources */,
 				C09A3A2F261F18B400DBD223 /* IngredientsTableViewCell.swift in Sources */,
 				C0506A2A26203059007FB71B /* MulticastDelegate.swift in Sources */,
 				C0C21282261EC00B002BDC0F /* EditNameViewController.swift in Sources */,
@@ -280,7 +288,7 @@
 				C0C21285261EC178002BDC0F /* EditInstructionViewController.swift in Sources */,
 				C0506A2526202FAB007FB71B /* Measurement+CoreDataClass.swift in Sources */,
 				C0506A2326202FAB007FB71B /* Ingredient+CoreDataClass.swift in Sources */,
-				C0C2127F261EBE3E002BDC0F /* CreateMealTableViewController.swift in Sources */,
+				C0C2127F261EBE3E002BDC0F /* AddMealTableViewController.swift in Sources */,
 				C0C21266261EB86A002BDC0F /* SceneDelegate.swift in Sources */,
 				C0506A2226202FAB007FB71B /* Meal+CoreDataProperties.swift in Sources */,
 				C0C21288261EC370002BDC0F /* IngredientDetailViewController.swift in Sources */,

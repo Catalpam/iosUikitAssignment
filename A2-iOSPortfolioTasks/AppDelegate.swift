@@ -79,7 +79,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
-
+    
 }
+
+extension NSManagedObjectContext {
+    public func newChildContext() -> NSManagedObjectContext{
+        let moc = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        moc.parent = self
+        return moc
+    }
+}
+
 

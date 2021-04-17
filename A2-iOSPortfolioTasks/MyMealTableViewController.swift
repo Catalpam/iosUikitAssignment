@@ -123,13 +123,14 @@ class MyMealTableViewController: UITableViewController, DatabaseListener {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editMealSegue"{
             let indexPath = self.tableView.indexPathForSelectedRow!
-            print(indexPath.row)
-            print("\n\n\n\n\n")
             thisMeal?.strMeal = myMeals[indexPath.row].name
             thisMeal?.strInstruction = myMeals[indexPath.row].instructions
-            thisMeal?.strMeasures
-
+            for index in 0..<(myMeals[indexPath.row].ingredients?.count ?? 0) {
+                thisMeal?.strMeasures[index]?.name = myMeals[indexPath.row].ingredients?.value(forKey: "name") as! String
+                thisMeal?.strMeasures[index]?.quantity = myMeals[indexPath.row].ingredients?.value(forKey: "quantity") as! String
+            }
             let controller = segue.destination as! DetailTableViewController
         }
     }
 }
+

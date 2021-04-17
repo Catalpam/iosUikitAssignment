@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailTableViewController: UITableViewController, StrDelegate, DatabaseListener {
+class AddMealTableViewController: UITableViewController, StrDelegate, DatabaseListener {
     var listenerType: ListenerType = .all
     
     let SECTION_NAME = 0
@@ -29,15 +29,10 @@ class DetailTableViewController: UITableViewController, StrDelegate, DatabaseLis
     var coreMeal: Meal = Meal()
     
     var measurements: [MeasureItem] = []
-    var relations:[Measurement] = []
     weak var databaseController: DatabaseProtocol?
 
     var meal: Meal?
     
-    @IBAction func backButton(_ sender: Any) {
-        databaseController?.noChange()
-        navigationController?.popViewController(animated: true)
-    }
     @IBAction func saveButton(_ sender: Any) {
         
         if (thisMeal?.strMeasures.count) == 0 {
@@ -53,8 +48,15 @@ class DetailTableViewController: UITableViewController, StrDelegate, DatabaseLis
             return
         }
         
-        print("db try add")
+        let newMeal = self.databaseController?.addMeal(name: (thisMeal?.strMeal)!, instruction: (thisMeal?.strInstruction)!)
+        
+        for index in 0..<(thisMeal?.strMeasures.count)! {
+            let ingres = self.databaseController?.addMeasurement(name: (thisMeal?.strMeasures[index]!.name)!, quantity: thisMeal!.strMeasures[index]!.quantity)
+            let _ = databaseController?.addMeasurementToMeal(measurement: ingres!, meal: newMeal!)
+        }
+        
         databaseController?.cleanup()
+        print("db try add")
         navigationController?.popViewController(animated: true)
     }
     
@@ -85,22 +87,19 @@ class DetailTableViewController: UITableViewController, StrDelegate, DatabaseLis
     override func viewDidLoad() {
         let appDelegate = (UIApplication.shared.delegate as? AppDelegate)
         databaseController = appDelegate?.databaseController
-        let temp = databaseController?.selectMeal(selectName: thisMeal!.strMeal!)
-        if temp == nil {
-//            displayMessage(title: "Outch", message: "Something bad happened!")
-//            navigationController?.popViewController(animated: true)
-//            return
-        }
-        else {
-            coreMeal = temp!
-            print("\n\nBelow are instruction from coredata")
-            print(coreMeal.instructions)
-            print("\n\n")
-        }
+//        let temp = databaseController?.selectMeal(selectName: thisMeal!.strMeal!)
+//        if temp == nil {
+////            displayMessage(title: "Outch", message: "Something bad happened!")
+////            navigationController?.popViewController(animated: true)
+////            return
+//        }
+//        else {
+//            coreMeal = temp!
+//            print("\n\nBelow are instruction from coredata")
+//            print(coreMeal.instructions)
+//            print("\n\n")
+//        }
         super.viewDidLoad()
-        if let meal = meal {
-            navigationItem.title = meal.name
-        }
         print("view did load")
     }
 
@@ -108,7 +107,7 @@ class DetailTableViewController: UITableViewController, StrDelegate, DatabaseLis
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 4
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -189,12 +188,9 @@ class DetailTableViewController: UITableViewController, StrDelegate, DatabaseLis
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete && indexPath.section == SECTION_INGREDIENT {
             tableView.performBatchUpdates({
-                let name = thisMeal?.strMeasures[indexPath.row]?.name
-                let quantity = thisMeal?.strMeasures[indexPath.row]?.quantity
-                databaseController?.removeMeasurementFromMeal(measurement: (databaseController?.selectMeasure(selectName: name!, selectQuantity: quantity!))!, meal: coreMeal)
+                thisMeal?.strMeasures.remove(at: indexPath.row)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)
                 self.tableView.reloadSections([SECTION_INGREDIENT], with: .automatic)
-                thisMeal?.strMeasures.remove(at: indexPath.row)
             }, completion: nil)
         }
     }
@@ -216,10 +212,9 @@ class DetailTableViewController: UITableViewController, StrDelegate, DatabaseLis
 }
 
 
-extension DetailTableViewController {
+extension AddMealTableViewController {
     func nameDelegate(_ editName: String) -> Bool {
         tableView.performBatchUpdates({
-            databaseController?.editMealName(selectMeal: self.coreMeal, newName: editName)
             nameStr = editName
             print("nameStr")
             tableView.reloadSections([SECTION_NAME], with: .automatic)
@@ -228,7 +223,6 @@ extension DetailTableViewController {
     }
     func introductionDelegate(_ editIntro: String) -> Bool {
         tableView.performBatchUpdates({
-            databaseController?.editMealInstruction(selectMeal: self.coreMeal, newInstruction: editIntro)
             introStr = editIntro
             tableView.reloadSections([SECTION_INSTRUCTION], with: .automatic)
         },completion: nil)
@@ -237,11 +231,24 @@ extension DetailTableViewController {
     }
     func measurementDelegate(_ selectMeasure: MeasureItem) -> Bool {
         let newMeasure = databaseController?.addMeasurement(name: selectMeasure.name, quantity: selectMeasure.quantity)
-        print(self.coreMeal.name)
-        let _ = databaseController?.addMeasurementToMeal(measurement: newMeasure!, meal: coreMeal)
         print("\n\n\n\n成功！！！！！！newMeasure Sucess:\(String(describing: newMeasure?.name))")
+//        let temp = databaseController?.selectMeal(selectName: thisMeal!.strMeal!)
+//        print(self.coreMeal.name)
+//        if temp == nil && coreMeal.name == nil{
+//            displayMessage(title: "Outch", message: "Something bad happened!")
+//            return true
+//        }
+//        else {
+//            coreMeal = temp!
+//            print("\n\nBelow are instruction from coredata")
+//            print(coreMeal.instructions)
+//            print("\n\n")
+//        }
         print("尝试添加关系，\(String(describing: newMeasure?.name)) & \(String(describing: coreMeal.name))")
         tableView.performBatchUpdates({
+//            let relation = databaseController?.addMeasurementToMeal(measurement: newMeasure!, meal: coreMeal)
+//            print(relation)
+//            tableView.insertRows(at: [IndexPath(row: (thisMeal?.strMeasures.count ?? 1)-1 , section: SECTION_INGREDIENT)], with: .automatic)
             tableView.reloadSections([SECTION_INGREDIENT], with: .automatic)
         },completion: nil)
         print("measurements.count")
@@ -250,3 +257,4 @@ extension DetailTableViewController {
         return true
     }
 }
+

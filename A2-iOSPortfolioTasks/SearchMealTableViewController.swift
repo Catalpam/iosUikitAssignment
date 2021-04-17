@@ -110,20 +110,19 @@ class SearchMealTableViewController: UITableViewController, UISearchBarDelegate 
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let ingrendientMeasurement = [indexPath.row]
-//        let heroAdded = databaseController?.addMeasurementToMeal(measurement: measurement, meal: databaseController!) ?? false
-//        if heroAdded {
-//            navigationController?.popViewController(animated: false)
         thisMeal = meals[indexPath.row]
-            return
-//        }
-//        tableView.deselectRow(at: indexPath, animated: true)
-
+        thisMeal?.strMeal = meals[indexPath.row].strMeal
+        thisMeal?.strInstruction = meals[indexPath.row].strInstruction
+        return
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let indexPath = self.tableView.indexPathForSelectedRow!
-        thisMeal = meals[indexPath.row]
+        tableView.performBatchUpdates({
+            thisMeal?.strMeal = meals[indexPath.row].strMeal
+            thisMeal?.strInstruction = meals[indexPath.row].strInstruction
+            thisMeal = meals[indexPath.row]
+        },completion: nil)
     }
     
 

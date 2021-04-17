@@ -49,5 +49,12 @@ protocol DatabaseProtocol: AnyObject {
     
     func cleanup()
     func removeMeasurementFromMeal(measurement: Measurement, meal: Meal)
+    
+    func selectMeal(selectName: String) -> Meal?
+    func editMealName(selectMeal: Meal, newName: String)
+    func editMealInstruction(selectMeal: Meal, newInstruction: String)
+    func selectMeasure(selectName: String, selectQuantity:String) -> Measurement?
+    
+    func noChange()
 
 }
